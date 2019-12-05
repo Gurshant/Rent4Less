@@ -4,13 +4,18 @@ import ListingNewForm from "./ListingNewForm";
 import GoogleAutocomplete from "./GoogleAutocomplete";
 import { geocodeByAddress } from 'react-places-autocomplete';
 
-
-
-
 export default class ListingNewPage extends Component {
   state = {
     errors: [],
-    address: ''
+    address: '',
+    values: {
+      street_number: '',
+      route: '',
+      locality: '',
+      administrative_area_level_1: '',
+      country: '',
+      postal_code: ''
+    }
   };
   createListing = params => {
     Listing.create(params).then(listing => {
@@ -24,12 +29,32 @@ export default class ListingNewPage extends Component {
   handleSearchChange(address) {
     this.setState({ address })
   }
-
+  usableAddressParams = ['street_number', 'route', 'locality', 'administrative_area_level_1', 'country', 'postal_code']
   handleSearchSelect(address) {
     this.handleSearchChange(address);
-    geocodeByAddress(address)
-      .then(results => console.log(results))
-  };
+    this.setState({
+      values: {
+        street_number: '',
+        route: '',
+        locality: '',
+        administrative_area_level_1: '',
+        country: '',
+        postal_code: ''
+      }
+    })
+    console.log(this.state.values)
+    geocodeByAddress(address).then(results => results[0].address_components.map(component => {
+      if (this.usableAddressParams.includes(component.types[0])) {
+        let pair = { [component.types[0]]: component.long_name };
+        this.setState(prevState => ({
+          values: { ...prevState.values, ...pair }
+        }))
+        console.log('state: ', this.state.values)
+      }
+    }))
+  }
+
+
   render() {
     return (
       <>
@@ -39,8 +64,9 @@ export default class ListingNewPage extends Component {
           address={this.state.address}
         />
         <div className="header">New Listing</div>
-        <ListingNewForm onSubmit={this.createListing} errors={this.state.errors} />
+        <ListingNewForm onSubmit={this.createListing} errors={this.state.errors} values={this.state.values} />
       </>
     );
   }
 }
+

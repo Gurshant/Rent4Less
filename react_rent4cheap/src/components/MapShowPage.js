@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-// import ReactDOM from "react-dom";
 import { Map, TileLayer, Marker, Popup, Leaflet } from "react-leaflet";
 import L from 'leaflet'
 import { Listing } from '../requests'

@@ -5,12 +5,13 @@ import { User, Session } from "../requests";
 
 import NavBar from "./NavBar";
 import SignInPage from "./SignInPage";
-import { SignUpPage } from "./SignUpPage";
+import SignUpPage from "./SignUpPage";
 
 import ListingShowPage from "./ListingShowPage";
 import ListingNewPage from "./ListingNewPage";
 import MapShowPage from "./MapShowPage";
 import AuthRoute from "./AuthRoute";
+import HomePage from "./HomePage";
 
 class App extends React.Component {
   constructor(props) {
@@ -57,33 +58,22 @@ class App extends React.Component {
       // 'BrowserRouter' to use any and all components that
       // come with 'react-router-dom'
       <BrowserRouter>
-        <div className="ui container App">
+        <div className="ui App">
           <NavBar currentUser={currentUser} onSignOut={this.signOut} />
           <Switch>
-            <Route
-              exact
-              path="/sign_up"
-              render={routeProps => (
-                <SignUpPage {...routeProps} onSignUp={this.getUser} />
-              )}
+            <Route exact path="/" render={routeProps => (
+              <HomePage {...routeProps} />)}
             />
-            <Route
-              path="/sign_in"
-              render={routeProps => (
-                <SignInPage {...routeProps} onSignIn={this.getUser} />
-              )}
+            <Route exact path="/sign_up" render={routeProps => (
+              <SignUpPage {...routeProps} onSignUp={this.getUser} />)}
             />
-            <AuthRoute
-              isAuthenticated={currentUser}
-              path="/listings/new"
-              component={ListingNewPage}
+            <Route path="/sign_in" render={routeProps => (
+              <SignInPage {...routeProps} onSignIn={this.getUser} />)}
             />
-            <Route
-              exact
-              path="/listings"
-              render={routeProps => (
-                <MapShowPage {...routeProps} />
-              )}
+            <AuthRoute isAuthenticated={currentUser} path="/listings/new" component={ListingNewPage}
+            />
+            <Route exact path="/listings" render={routeProps => (
+              <MapShowPage {...routeProps} />)}
             />
             <Route path="/listings/:id" component={ListingShowPage} />
           </Switch>

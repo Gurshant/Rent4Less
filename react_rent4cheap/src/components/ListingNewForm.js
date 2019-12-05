@@ -1,7 +1,8 @@
 import React from 'react';
-import GoogleAutocomplete from './GoogleAutocomplete';
+import FormErrors from './FormErrors/FormErrors';
 
 function ListingNewForm(props) {
+
   function handleSubmit(event) {
     event.preventDefault();
     const { currentTarget } = event;
@@ -35,57 +36,71 @@ function ListingNewForm(props) {
         <div className="Address">
           <h2>Address</h2>
           <div className="field">
-            <input type="number" name="street_number" id="street_number" placeholder="Street Number" required />
+            <input type="number" name="street_number" id="street_number" placeholder="Street Number" defaultValue={props.values.street_number} required /> </div>
+          <FormErrors forField="street_number" errors={props.errors} />
+          <div className="field">
+            <input type="text" name="route" id="route" placeholder="Street" defaultValue={props.values.route} required />
+            <FormErrors forField="route" errors={props.errors} />
           </div>
           <div className="field">
-            <input type="text" name="route" id="route" placeholder="Street" required />
+            <input type="text" name="locality" id="locality" placeholder="City" defaultValue={props.values.locality} required />
+            <FormErrors forField="locality" errors={props.errors} />
           </div>
           <div className="field">
-            <input type="text" name="locality" id="locality" placeholder="City" required />
+            <input type="text" name="administrative_area_level_1" id="administrative_area_level_1" placeholder="Province" defaultValue={props.values.administrative_area_level_1} required />
+            <FormErrors forField="administrative_area_level_1" errors={props.errors} />
           </div>
           <div className="field">
-            <input type="text" name="administrative_area_level_1" id="administrative_area_level_1" placeholder="Province" required />
+            <input type="text" name="country" id="country" placeholder="Country" defaultValue={props.values.country} required />
+            <FormErrors forField="country" errors={props.errors} />
           </div>
           <div className="field">
-            <input type="text" name="country" id="country" placeholder="Country" required />
-          </div>
-          <div className="field">
-            <input type="text" name="postal_code" id="postal_code" placeholder="Postal Code" required />
+            <input type="text" name="postal_code" id="postal_code" placeholder="Postal Code" defaultValue={props.values.postal_code} required />
+            <FormErrors forField="postal_code" errors={props.errors} />
           </div>
         </div>
         <div className="listing">
           <h2>Property Details</h2>
           <div className="field">
             <input type="number" name="bedroom" id="bedroom" placeholder="Number of Bedrooms" />
+            <FormErrors forField="bedroom" errors={props.errors} />
           </div>
           <div className="field">
             <input type="number" name="bathroom" id="bathroom" placeholder="Number of Bathrooms" />
+            <FormErrors forField="bathroom" errors={props.errors} />
           </div>
           <div className="field">
             <input type="number" name="sqft" id="sqft" placeholder="Total Sqft" />
+            <FormErrors forField="sqft" errors={props.errors} />
           </div>
           <div className="field">
             <input type="number" name="price" id="price" placeholder="Price" />
+            <FormErrors forField="price" errors={props.errors} />
           </div>
           <div>
             <label htmlFor="ac">AC</label>
             <input type="checkbox" name="ac" id="ac" />
+            <FormErrors forField="ac" errors={props.errors} />
           </div>
           <div>
             <label htmlFor="fireplace">Fireplace</label>
             <input type="checkbox" name="fireplace" id="fireplace" />
+            <FormErrors forField="fireplace" errors={props.errors} />
           </div>
           <div>
             <label htmlFor="deck">Deck</label>
             <input type="checkbox" name="deck" id="deck" />
+            <FormErrors forField="deck" errors={props.errors} />
           </div>
           <div>
             <label htmlFor="is_active">Active?</label>
             <input type="checkbox" name="is_active" id="is_active" />
+            <FormErrors forField="is_active" errors={props.errors} />
           </div>
           <div>
             <label htmlFor="description">description</label>
             <input type="text" name="description" id="description" placeholder="1200" />
+            <FormErrors forField="description" errors={props.errors} />
           </div>
         </div>
 
