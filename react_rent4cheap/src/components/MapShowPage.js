@@ -5,10 +5,7 @@ import { Listing } from '../requests'
 import marker from '../marker.png'
 import FilterForm from './FilterForm'
 import GoogleAutocomplete from './GoogleAutocomplete'
-import PlacesAutocomplete, {
-  geocodeByAddress,
-  getLatLng,
-} from 'react-places-autocomplete';
+
 
 
 class MapShowPage extends Component {
@@ -18,12 +15,10 @@ class MapShowPage extends Component {
     this.state = {
       listings: [],
       isLoading: true,
-      center: [49.2827, -123.1207],
-      address: ''
     }
     this.filterMarker = this.filterMarker.bind(this)
-
   }
+
   filterMarker(params) {
     Listing.all().then(listings => {
       let valid = listings.filter(list => (list.latitude && list.sqft >= params.sqft && list.bedroom >= params.bedroom && list.bathroom >= params.bathroom && (params.price ? list.price <= params.price : true)));
@@ -34,25 +29,11 @@ class MapShowPage extends Component {
       });
     });
   }
-
-  handleSearchChange(address) {
-    this.setState({ address })
-  }
-
-  handleSearchSelect(address) {
-    this.handleSearchChange(address)
-    geocodeByAddress(address)
-      .then(results => getLatLng(results[0]))
-      .then(coords => {
-        this.setState({ center: [coords.lat, coords.lng] })
-      })
-      .catch(error => console.error('Error', error));
-  };
-
   componentDidMount() {
     let params = { sqft: 0, bedroom: 0, bathroom: 0 }
     this.filterMarker(params);
   }
+
 
   render() {
     let icon = new L.Icon({
@@ -67,13 +48,13 @@ class MapShowPage extends Component {
     return (
       <div>
         <GoogleAutocomplete
-          handleSelect={address => this.handleSearchSelect(address)}
-          handleChange={address => this.handleSearchChange(address)}
-          address={this.state.address}
+          handleSelect={this.props.handleSelect}
+          handleChange={this.props.handleChange}
+          address={this.props.address}
         />
         <FilterForm filterMarker={params => this.filterMarker(params)} />
         {/* center map along the search result  */}
-        <Map center={this.state.center} zoom={12} style={{ height: "80vh", width: '80%' }}>
+        <Map center={this.props.center} zoom={12} style={{ height: "80vh", width: '80%' }}>
           <TileLayer
             attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
