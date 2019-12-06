@@ -1,11 +1,21 @@
 /* Styling for initial 100vh */
-
-const search_container{
+/* 
+.search_container{
   background-color: #cccccc;
   height: 92vh;
   width: 100%;
   background-size: 100%;
   background-repeat: no-repeat;
+} */
+.search_bar{
+  width: 80%; 
+  margin: 0 auto;
+}
+.layer {
+  background: rgba(204, 204, 204, 0.5);
+  position: absolute;
+  color: black;
+  margin-top: 2em;
 }
 
 /* styling for parallax scrolling */
@@ -13,26 +23,28 @@ body, html{
   margin:0;
   padding:0;
 }
-
+h1{
+  padding-top: 1em;
+  font-family: 'open sans', 'HelveticaNeue', 'Helvetica Neue', 'Helvetica-Neue', Helvetica, Arial, sans-serif;
+  font-weight: bold;
+}
 .wrapper {
-  height: 100vh;
+  height: 92vh;
   overflow-x: hidden;
   overflow-y: auto;
-  perspective: 2px;
+  perspective: 3px;
 }
 
-.section {
+.section{
+  height: 92vh;
+}
+.section_home_img{
   position: relative;
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  text-shadow: 0 0 5px #000;
-
+  height: 70vh;
 }
 
 .parallax::after {
+  position: relative;
   content: " ";
   position: absolute;
   top: 0;
@@ -40,16 +52,28 @@ body, html{
   bottom: 0;
   left: 0;
   transform: translateZ(-1px) scale(1.5);
-  background-size: 100%;
+
+  background-size: cover;
+  background-position: center;
   z-index: -1;
 }
+
 .static {
-  background: #cccccc;
-}
-.bg1::after {
-  background-image: url('https://placekitten.com/g/900/700');
+  height: 40vh;
+  background: #FFFFFF;
+
+  color: black;
+
+  display: flex;
+  justify-content: center;
 }
 
+.bg1::after {
+  background-image: url('./images/home1.jpg');
+}
 .bg2::after {
-  background-image: url('https://placekitten.com/g/800/600');
+  background-image: url('./images/home2.jpg');
+}
+.bg3::after {
+  background-image: url('./images/family.jpg');
 }

@@ -9,7 +9,6 @@ import GoogleAutocomplete from './GoogleAutocomplete'
 
 
 class MapShowPage extends Component {
-
   constructor(props) {
     super(props);
     this.state = {
@@ -18,11 +17,9 @@ class MapShowPage extends Component {
     }
     this.filterMarker = this.filterMarker.bind(this)
   }
-
   filterMarker(params) {
     Listing.all().then(listings => {
       let valid = listings.filter(list => (list.latitude && list.sqft >= params.sqft && list.bedroom >= params.bedroom && list.bathroom >= params.bathroom && (params.price ? list.price <= params.price : true)));
-      console.log(valid);
       this.setState({
         listings: valid,
         isLoading: false
@@ -32,6 +29,7 @@ class MapShowPage extends Component {
   componentDidMount() {
     let params = { sqft: 0, bedroom: 0, bathroom: 0 }
     this.filterMarker(params);
+    this.props.handlePlaceholder('Search a location or neighborhood')
   }
 
 
@@ -48,6 +46,7 @@ class MapShowPage extends Component {
     return (
       <div>
         <GoogleAutocomplete
+          placeholder={this.props.placeholder}
           handleSelect={this.props.handleSelect}
           handleChange={this.props.handleChange}
           address={this.props.address}
@@ -67,13 +66,6 @@ class MapShowPage extends Component {
               </Popup>
             </Marker>
           ))}
-          {/* Listing.all().then((listings) => {
-            listings.map((list) => {
-              <Marker position={[list.latitude, list.longitude]}>
-
-              </Marker>
-            })
-          }).catch(err => console.log(err)) */}
         </Map>
       </div >
     );

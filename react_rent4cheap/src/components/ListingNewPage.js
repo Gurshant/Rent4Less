@@ -5,18 +5,24 @@ import GoogleAutocomplete from "./GoogleAutocomplete";
 import { geocodeByAddress } from 'react-places-autocomplete';
 
 export default class ListingNewPage extends Component {
-  state = {
-    errors: [],
-    address: '',
-    values: {
-      street_number: '',
-      route: '',
-      locality: '',
-      administrative_area_level_1: '',
-      country: '',
-      postal_code: ''
-    }
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      errors: [],
+      address: '',
+      values: {
+        street_number: '',
+        route: '',
+        locality: '',
+        administrative_area_level_1: '',
+        country: '',
+        postal_code: ''
+      }
+    };
+  }
+  componentDidMount() {
+    this.props.handlePlaceholder('Enter the rental Address')
+  }
   createListing = params => {
     Listing.create(params).then(listing => {
       if (listing.errors) {
@@ -26,10 +32,13 @@ export default class ListingNewPage extends Component {
       }
     });
   };
+
   handleSearchChange(address) {
     this.setState({ address })
   }
+
   usableAddressParams = ['street_number', 'route', 'locality', 'administrative_area_level_1', 'country', 'postal_code']
+
   handleSearchSelect(address) {
     this.handleSearchChange(address);
     this.setState({
@@ -42,14 +51,13 @@ export default class ListingNewPage extends Component {
         postal_code: ''
       }
     })
-    console.log(this.state.values)
+
     geocodeByAddress(address).then(results => results[0].address_components.map(component => {
       if (this.usableAddressParams.includes(component.types[0])) {
         let pair = { [component.types[0]]: component.long_name };
         this.setState(prevState => ({
           values: { ...prevState.values, ...pair }
         }))
-        console.log('state: ', this.state.values)
       }
     }))
   }
@@ -59,6 +67,7 @@ export default class ListingNewPage extends Component {
     return (
       <>
         <GoogleAutocomplete
+          placeholder={this.props.placeholder}
           handleSelect={address => this.handleSearchSelect(address)}
           handleChange={address => this.handleSearchChange(address)}
           address={this.state.address}

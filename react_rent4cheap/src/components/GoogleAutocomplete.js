@@ -9,8 +9,8 @@ function GoogleAutocomplete(props) {
     < >
       <input
         {...getInputProps({
-          placeholder: 'Search Places ...',
           className: 'ui fluid search selection dropdown',
+          placeholder: `${props.placeholder}`
         })}
       />
       <div className="autocomplete-dropdown-container">

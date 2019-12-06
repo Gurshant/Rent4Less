@@ -1,9 +1,9 @@
 import React from 'react'
-import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
+
 import NavBar from "./NavBar";
 import SignInPage from "./SignInPage";
 import SignUpPage from "./SignUpPage";
-
 import ListingShowPage from "./ListingShowPage";
 import ListingNewPage from "./ListingNewPage";
 import MapShowPage from "./MapShowPage";
@@ -12,14 +12,25 @@ import HomePage from "./HomePage";
 
 import { User, Session } from "../requests";
 
-import {
-  geocodeByAddress,
-  getLatLng,
-} from 'react-places-autocomplete';
-import { Container } from "@material-ui/core";
+import { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
 
 
 class Router extends React.Component {
+
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      currentUser: null,
+      loading: true,
+      google: null,
+      address: '',
+      center: [49.2827, -123.1207],
+      placeholder: 'Find an apartment or house for rent'
+    };
+    this.handleSearchSelect = this.handleSearchSelect.bind(this)
+    this.handleSearchChange = this.handleSearchChange.bind(this)
+  }
   handleSearchChange(address) {
     this.setState({ address });
   }
@@ -36,17 +47,8 @@ class Router extends React.Component {
       })
       .catch(error => console.error('Error', error));
   };
-  constructor(props) {
-    super(props);
-    this.state = {
-      currentUser: null,
-      loading: true,
-      google: null,
-      address: '',
-      center: [49.2827, -123.1207],
-    };
-    this.handleSearchSelect = this.handleSearchSelect.bind(this)
-    this.handleSearchChange = this.handleSearchChange.bind(this)
+  handleGooglePlaceholder(string) {
+    this.setState({ placeholder: string })
   }
 
   signOut = () => {
@@ -87,6 +89,8 @@ class Router extends React.Component {
           <Route exact path="/" render={routeProps => (
             <HomePage
               {...routeProps}
+              handlePlaceholder={string => this.handleGooglePlaceholder(string)}
+              placeholder={this.state.placeholder}
               handleSelect={address => this.handleSearchSelect(address)}
               handleChange={address => this.handleSearchChange(address)}
               address={this.state.address}
@@ -98,11 +102,19 @@ class Router extends React.Component {
           <Route path="/sign_in" render={routeProps => (
             <SignInPage {...routeProps} onSignIn={this.getUser} />)}
           />
-          <AuthRoute isAuthenticated={currentUser} path="/listings/new" component={ListingNewPage}
+          <AuthRoute isAuthenticated={currentUser} path="/listings/new"
+            render={(restProps) => (
+              <ListingNewPage
+                {...restProps}
+                handlePlaceholder={string => this.handleGooglePlaceholder(string)}
+                placeholder={this.state.placeholder}
+              />)}
           />
           <Route exact path="/listings" render={routeProps => (
             <MapShowPage
               {...routeProps}
+              handlePlaceholder={string => this.handleGooglePlaceholder(string)}
+              placeholder={this.state.placeholder}
               handleSelect={address => this.handleSearchSelect(address)}
               handleChange={address => this.handleSearchChange(address)}
               address={this.state.address}
