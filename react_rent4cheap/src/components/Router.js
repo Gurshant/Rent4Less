@@ -43,8 +43,6 @@ class Router extends React.Component {
       .then(results => getLatLng(results[0]))
       .then(coords => {
         this.setState({ center: [coords.lat, coords.lng] });
-        // debugger;
-        // return <Redirect to="/listings" />
         this.props.history.push('/listings')
       })
       .catch(error => console.error('Error', error));
@@ -87,7 +85,6 @@ class Router extends React.Component {
       <div className="ui App">
 
         <Switch>
-          {/* <Redirect from='/' to='/listings' /> */}
           <Route exact path="/" render={routeProps => (
             <HomePage
               currentUser={this.state.currentUser}
@@ -115,6 +112,12 @@ class Router extends React.Component {
           />
 
           <Route exact path="/sign_in/material" render={routeProps => (
+            <>
+              <NavBar currentUser={currentUser} onSignOut={this.signOut} />
+              <SignInPageMaterialUI {...routeProps} onSignIn={this.getUser} />
+            </>)}
+          />
+          <Route exact path="/sign_up/material" render={routeProps => (
             <>
               <NavBar currentUser={currentUser} onSignOut={this.signOut} />
               <SignInPageMaterialUI {...routeProps} onSignIn={this.getUser} />
