@@ -3,6 +3,8 @@ import { Route, Switch } from "react-router-dom";
 
 import NavBar from "./NavBar";
 import SignInPage from "./SignInPage";
+import SignInPageMaterialUI from "./SignInPageMaterialUI";
+
 import SignUpPage from "./SignUpPage";
 import ListingShowPage from "./ListingShowPage";
 import ListingNewPage from "./ListingNewPage";
@@ -14,10 +16,10 @@ import { User, Session } from "../requests";
 
 import { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
 
+import './HomePage.css'
+
 
 class Router extends React.Component {
-
-
   constructor(props) {
     super(props);
     this.state = {
@@ -41,8 +43,6 @@ class Router extends React.Component {
       .then(results => getLatLng(results[0]))
       .then(coords => {
         this.setState({ center: [coords.lat, coords.lng] });
-        // debugger;
-        // return <Redirect to="/listings" />
         this.props.history.push('/listings')
       })
       .catch(error => console.error('Error', error));
@@ -83,11 +83,13 @@ class Router extends React.Component {
     }
     return (
       <div className="ui App">
-        <NavBar currentUser={currentUser} onSignOut={this.signOut} />
+
         <Switch>
-          {/* <Redirect from='/' to='/listings' /> */}
           <Route exact path="/" render={routeProps => (
             <HomePage
+              currentUser={this.state.currentUser}
+              onSignOut={this.signOut}
+
               {...routeProps}
               handlePlaceholder={string => this.handleGooglePlaceholder(string)}
               placeholder={this.state.placeholder}
@@ -97,31 +99,61 @@ class Router extends React.Component {
             />)}
           />
           <Route exact path="/sign_up" render={routeProps => (
-            <SignUpPage {...routeProps} onSignUp={this.getUser} />)}
+            <>
+              <NavBar currentUser={currentUser} onSignOut={this.signOut} />
+              <SignUpPage {...routeProps} onSignUp={this.getUser} />
+            </>)}
           />
-          <Route path="/sign_in" render={routeProps => (
-            <SignInPage {...routeProps} onSignIn={this.getUser} />)}
+          <Route exact path="/sign_in" render={routeProps => (
+            <>
+              <NavBar currentUser={currentUser} onSignOut={this.signOut} />
+              <SignInPage {...routeProps} onSignIn={this.getUser} />
+            </>)}
+          />
+
+          <Route exact path="/sign_in/material" render={routeProps => (
+            <>
+              <NavBar currentUser={currentUser} onSignOut={this.signOut} />
+              <SignInPageMaterialUI {...routeProps} onSignIn={this.getUser} />
+            </>)}
+          />
+          <Route exact path="/sign_up/material" render={routeProps => (
+            <>
+              <NavBar currentUser={currentUser} onSignOut={this.signOut} />
+              <SignInPageMaterialUI {...routeProps} onSignIn={this.getUser} />
+            </>)}
           />
           <AuthRoute isAuthenticated={currentUser} path="/listings/new"
             render={(restProps) => (
-              <ListingNewPage
-                {...restProps}
-                handlePlaceholder={string => this.handleGooglePlaceholder(string)}
-                placeholder={this.state.placeholder}
-              />)}
+              <>
+                <NavBar currentUser={currentUser} onSignOut={this.signOut} />
+                <ListingNewPage
+                  {...restProps}
+                  handlePlaceholder={string => this.handleGooglePlaceholder(string)}
+                  placeholder={this.state.placeholder}
+                />
+              </>)}
           />
           <Route exact path="/listings" render={routeProps => (
-            <MapShowPage
-              {...routeProps}
-              handlePlaceholder={string => this.handleGooglePlaceholder(string)}
-              placeholder={this.state.placeholder}
-              handleSelect={address => this.handleSearchSelect(address)}
-              handleChange={address => this.handleSearchChange(address)}
-              address={this.state.address}
-              center={this.state.center}
-            />)}
+            <>
+              <NavBar currentUser={currentUser} onSignOut={this.signOut} />
+              <MapShowPage
+                {...routeProps}
+                handlePlaceholder={string => this.handleGooglePlaceholder(string)}
+                placeholder={this.state.placeholder}
+                handleSelect={address => this.handleSearchSelect(address)}
+                handleChange={address => this.handleSearchChange(address)}
+                address={this.state.address}
+                center={this.state.center}
+              />
+            </>)}
           />
-          <Route path="/listings/:id" component={ListingShowPage} />
+          <Route path="/listings/:id" render={routeProps => (
+            <>
+              <NavBar currentUser={currentUser} onSignOut={this.signOut} />
+              <ListingShowPage />
+            </>)}
+          />
         </Switch>
       </div>
     )

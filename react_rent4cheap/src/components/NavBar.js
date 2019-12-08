@@ -5,14 +5,11 @@ import Toolbar from '@material-ui/core/Toolbar';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
-import Link from '@material-ui/core/Link';
-
-import { NavLink } from "react-router-dom";
-
-
 
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
+
+import './HomePage.css'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -81,9 +78,7 @@ export default function NavBar(props) {
             </Menu>
           </span>
         ) : (
-            <span >
-              <Button edge="end" color="inherit" href="http://localhost:3001/sign_up">Sign Up</Button>
-              <Button edge="end" color="inherit" href="http://localhost:3001/sign_in">Login</Button>
+            <span ><Button edge="end" variant="outlined" size="large" color="primary" className="button" href="http://localhost:3001/sign_up">Sign Up</Button> <Button edge="end" variant="outlined" size="large" color="primary" className="button" href="http://localhost:3001/sign_in">Login</Button>
             </span>
           )
         }
