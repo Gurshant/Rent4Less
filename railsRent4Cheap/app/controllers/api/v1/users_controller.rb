@@ -44,7 +44,7 @@ class Api::V1::UsersController < Api::ApplicationController
       type: error.class.to_s, 
       record_type: invalid_record.class.to_s,
       field: field,
-      message: message
+      message: "#{field.capitalize} #{message}"
     }
     end
     render(

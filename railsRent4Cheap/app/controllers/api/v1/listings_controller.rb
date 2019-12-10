@@ -50,7 +50,7 @@ class Api::V1::ListingsController < Api::ApplicationController
   private
  
     def listing_params
-      params.require(:listing).permit(:street_number, :route, :locality, :administrative_area_level_1, :postal_code, :country, :latitude, :longitude,:bedroom, :bathroom, :sqft, :ac, :fireplace, :deck, :price, :description, :is_active)
+      params.require(:listing).permit(:street_number, :route, :locality, :administrative_area_level_1, :postal_code, :country, :latitude, :longitude,:bedroom, :bathroom, :sqft, :ac, :fireplace, :deck, :price, :description, :is_active, :pet_friendly, :smoking, :parking, :gym, :laundromat)
     end
 
     def find_listing
