@@ -19,6 +19,7 @@ class Api::V1::ListingsController < Api::ApplicationController
   def create
     listing = Listing.new(listing_params)
     listing.user = current_user
+    # byebug
     # if listing.save
     #   render json: {id: listing.id}
     # else
@@ -50,7 +51,7 @@ class Api::V1::ListingsController < Api::ApplicationController
   private
  
     def listing_params
-      params.require(:listing).permit(:street_number, :route, :locality, :administrative_area_level_1, :postal_code, :country, :latitude, :longitude,:bedroom, :bathroom, :sqft, :ac, :fireplace, :deck, :price, :description, :is_active, :pet_friendly, :smoking, :parking, :gym, :laundromat)
+      params.require(:listing).permit(:street_number, :route, :locality, :administrative_area_level_1, :postal_code, :country, :latitude, :longitude,:bedroom, :bathroom, :sqft, :ac, :fireplace, :deck, :price, :description, :is_active, :pet_friendly, :smoking, :parking, :gym, :laundromat, :image)
     end
 
     def find_listing
