@@ -19,7 +19,7 @@ class Api::V1::ListingsController < Api::ApplicationController
   def create
     listing = Listing.new(listing_params)
     listing.user = current_user
-    # byebug
+    byebug
     # if listing.save
     #   render json: {id: listing.id}
     # else
@@ -52,6 +52,9 @@ class Api::V1::ListingsController < Api::ApplicationController
  
     def listing_params
       params.require(:listing).permit(:street_number, :route, :locality, :administrative_area_level_1, :postal_code, :country, :latitude, :longitude,:bedroom, :bathroom, :sqft, :ac, :fireplace, :deck, :price, :description, :is_active, :pet_friendly, :smoking, :parking, :gym, :laundromat, :image)
+      # params.require(:listing).tap do |whitelisted|
+      #     whitelisted[:image] = params[:listing][:image].permit!
+      # end`
     end
 
     def find_listing
