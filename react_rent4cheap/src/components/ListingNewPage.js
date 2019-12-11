@@ -1,81 +1,36 @@
-import React, { Component } from "react";
-import { Listing } from "../requests";
-import ListingNewForm from "./ListingNewForm";
-import GoogleAutocomplete from "./GoogleAutocomplete";
-import { geocodeByAddress } from 'react-places-autocomplete';
+import React, { useState } from 'react';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import Grid from '@material-ui/core/Grid';
+import { makeStyles } from '@material-ui/core/styles';
+import HomeImage from './images/building.jpg'
+import Paper from '@material-ui/core/Paper';
+import ListingNewForm from './ListingNewForm';
 
-export default class ListingNewPage extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      errors: [],
-      address: '',
-      values: {
-        street_number: '',
-        route: '',
-        locality: '',
-        administrative_area_level_1: '',
-        country: '',
-        postal_code: ''
-      }
-    };
-  }
-  componentDidMount() {
-    this.props.handlePlaceholder('Enter the rental Address')
-  }
-  createListing = params => {
-    Listing.create(params).then(listing => {
-      if (listing.errors) {
-        this.setState({ errors: listing.errors })
-      } else {
-        this.props.history.push(`/listings/${listing.id}`);
-      }
-    });
-  };
+const useStyles = makeStyles(theme => ({
+  root: {
+    height: '92vh',
+  },
+  image: {
+    backgroundImage: `url(${HomeImage})`,
+    backgroundRepeat: 'no-repeat',
+    backgroundColor:
+      theme.palette.type === 'dark' ? theme.palette.grey[900] : theme.palette.grey[50],
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+  },
+}));
 
-  handleSearchChange(address) {
-    this.setState({ address })
-  }
-
-  usableAddressParams = ['street_number', 'route', 'locality', 'administrative_area_level_1', 'country', 'postal_code']
-
-  handleSearchSelect(address) {
-    this.handleSearchChange(address);
-    this.setState({
-      values: {
-        street_number: '',
-        route: '',
-        locality: '',
-        administrative_area_level_1: '',
-        country: '',
-        postal_code: ''
-      }
-    })
-
-    geocodeByAddress(address).then(results => results[0].address_components.map(component => {
-      if (this.usableAddressParams.includes(component.types[0])) {
-        let pair = { [component.types[0]]: component.long_name };
-        this.setState(prevState => ({
-          values: { ...prevState.values, ...pair }
-        }))
-      }
-    }))
-  }
-
-
-  render() {
-    return (
-      <>
-        <GoogleAutocomplete
-          placeholder={this.props.placeholder}
-          handleSelect={address => this.handleSearchSelect(address)}
-          handleChange={address => this.handleSearchChange(address)}
-          address={this.state.address}
-        />
-        <div className="header">New Listing</div>
-        <ListingNewForm onSubmit={this.createListing} errors={this.state.errors} values={this.state.values} />
-      </>
-    );
-  }
+export default function ListingNewPage(props) {
+  const classes = useStyles();
+  return (
+    <Grid container component="main" className={classes.root}>
+      <CssBaseline />
+      <Grid item xs={false} sm={5} md={7} className={classes.image} />
+      <Grid item xs={12} sm={7} md={5} component={Paper} elevation={6} square className='scrollable'>
+        <div className='scrollable_child'>
+          <ListingNewForm props={props} />
+        </div>
+      </Grid>
+    </Grid>
+  );
 }
-

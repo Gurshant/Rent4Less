@@ -3,6 +3,7 @@ import PlacesAutocomplete, {
   geocodeByAddress,
   getLatLng,
 } from 'react-places-autocomplete';
+import ProgressSpinner from './ProgressSpinner';
 
 class LocationSearchInput extends React.Component {
   constructor(props) {
@@ -37,7 +38,7 @@ class LocationSearchInput extends React.Component {
               })}
             />
             <div className="autocomplete-dropdown-container">
-              {loading && <div>Loading...</div>}
+              {loading && <ProgressSpinner />}
               {suggestions.map(suggestion => {
                 const className = suggestion.active
                 return (
