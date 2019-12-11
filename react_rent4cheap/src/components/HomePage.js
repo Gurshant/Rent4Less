@@ -5,7 +5,7 @@ import Button from '@material-ui/core/Button';
 import NavBar from "./NavBar";
 import ButtonBase from '@material-ui/core/ButtonBase';
 import Typography from '@material-ui/core/Typography';
-
+import Footer from './Footer'
 
 import { makeStyles } from '@material-ui/core/styles';
 import './HomePage.css'
@@ -59,8 +59,7 @@ class HomePage extends Component {
                 Sign Up
             </Button></div></div>
           </section>
-          <section className="section_home_img parallax bg2">
-          </section>
+          <section className="section_home_img parallax bg2" />
           <section className="section static">
             <div className="inner">
               <h1>Quick Support</h1>
@@ -73,6 +72,8 @@ class HomePage extends Component {
               </div>
             </div>
           </section>
+          {/* <section className="section_home_img parallax bg4" /> */}
+          <Footer />
         </main>
 
       </>

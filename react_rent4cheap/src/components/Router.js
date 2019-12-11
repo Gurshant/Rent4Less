@@ -2,12 +2,11 @@ import React from 'react'
 import { Route, Switch } from "react-router-dom";
 
 import NavBar from "./NavBar";
-import SignInPage from "./SignInPage";
-import SignInPageMaterialUI from "./SignInPageMaterialUI";
+import SignPage from "./SignPage";
 
-import SignUpPage from "./SignUpPage";
 import ListingShowPage from "./ListingShowPage";
 import ListingNewPage from "./ListingNewPage";
+
 import MapShowPage from "./MapShowPage";
 import AuthRoute from "./AuthRoute";
 import HomePage from "./HomePage";
@@ -17,6 +16,7 @@ import { User, Session } from "../requests";
 import { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
 
 import './HomePage.css'
+import ProgressSpinner from './ProgressSpinner';
 
 
 class Router extends React.Component {
@@ -79,7 +79,7 @@ class Router extends React.Component {
   render() {
     const { loading, currentUser } = this.state;
     if (loading) {
-      return <div />;
+      return <ProgressSpinner />
     }
     return (
       <div className="ui App">
@@ -98,32 +98,21 @@ class Router extends React.Component {
               address={this.state.address}
             />)}
           />
-          <Route exact path="/sign_up" render={routeProps => (
-            <>
-              <NavBar currentUser={currentUser} onSignOut={this.signOut} />
-              <SignUpPage {...routeProps} onSignUp={this.getUser} />
-            </>)}
-          />
+
+
           <Route exact path="/sign_in" render={routeProps => (
             <>
               <NavBar currentUser={currentUser} onSignOut={this.signOut} />
-              <SignInPage {...routeProps} onSignIn={this.getUser} />
+              <SignPage {...routeProps} onSignIn={this.getUser} />
             </>)}
           />
-
-          <Route exact path="/sign_in/material" render={routeProps => (
+          <Route exact path="/sign_up" render={routeProps => (
             <>
               <NavBar currentUser={currentUser} onSignOut={this.signOut} />
-              <SignInPageMaterialUI {...routeProps} onSignIn={this.getUser} />
+              <SignPage {...routeProps} onSignIn={this.getUser} />
             </>)}
           />
-          <Route exact path="/sign_up/material" render={routeProps => (
-            <>
-              <NavBar currentUser={currentUser} onSignOut={this.signOut} />
-              <SignInPageMaterialUI {...routeProps} onSignIn={this.getUser} />
-            </>)}
-          />
-          <AuthRoute isAuthenticated={currentUser} path="/listings/new"
+          <AuthRoute isAuthenticated={currentUser} exact path="/listings/new"
             render={(restProps) => (
               <>
                 <NavBar currentUser={currentUser} onSignOut={this.signOut} />
@@ -151,7 +140,7 @@ class Router extends React.Component {
           <Route path="/listings/:id" render={routeProps => (
             <>
               <NavBar currentUser={currentUser} onSignOut={this.signOut} />
-              <ListingShowPage />
+              <ListingShowPage {...routeProps} />
             </>)}
           />
         </Switch>

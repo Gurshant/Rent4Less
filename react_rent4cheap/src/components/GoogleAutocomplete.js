@@ -1,5 +1,6 @@
 import React from 'react';
 import PlacesAutocomplete from 'react-places-autocomplete';
+import ProgressSpinner from './ProgressSpinner';
 
 function GoogleAutocomplete(props) {
   const searchOptions = {
@@ -14,7 +15,7 @@ function GoogleAutocomplete(props) {
         })}
       />
       <div className="autocomplete-dropdown-container">
-        {loading && <div>Loading...</div>}
+        {loading && <ProgressSpinner />}
         {suggestions.map(suggestion => {
           const className = suggestion.active
             ? 'suggestion-item--active'

@@ -28,7 +28,7 @@ const useStyles = makeStyles(theme => ({
   },
   avatar: {
     margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main,
+    backgroundColor: '#0D3606',
   },
   form: {
     width: '100%', // Fix IE 11 issue.
@@ -75,8 +75,6 @@ export default function SignUpForm(props) {
     User.create(signUpParams).then(user => {
       if (user.errors) {
         setErrors(user.errors);
-        console.log(errors);
-        debugger;
       } else {
         Session.create({
           email: signUpParams.email,
@@ -87,18 +85,19 @@ export default function SignUpForm(props) {
           props.props.history.push("/");
         })
       }
+      debugger;
     })
   }
   return (
-    <Grid item xs={12} sm={7} md={5} component={Paper} elevation={6} square>
-      <div className={classes.paper}>
-        <Avatar className={classes.avatar}>
-          <LockOutlinedIcon />
-        </Avatar>
-        <Typography component="h1" variant="h5">
-          Sign in
-          </Typography>
-        <form className={classes.form} onSubmit={handleSubmit}>
+    <div className={classes.paper}>
+      <Avatar className={classes.avatar}>
+        <LockOutlinedIcon />
+      </Avatar>
+      <Typography component="h1" variant="h5">
+        Sign in
+      </Typography>
+      <form className={classes.form} onSubmit={handleSubmit}>
+        {errors.filter(err => err['field'] === 'first_name').length === 0 ? (
           <TextField
             variant="outlined"
             margin="normal"
@@ -110,7 +109,36 @@ export default function SignUpForm(props) {
             autoComplete="first_name"
             autoFocus
           />
+        ) :
           <TextField
+            error
+            helperText={errors.filter(err => err['field'] === 'first_name').map(err => err.message)}
+            variant="outlined"
+            margin="normal"
+            required
+            fullWidth
+            id="first_name"
+            label="First Name"
+            name="first_name"
+            autoComplete="first_name"
+            autoFocus
+          />
+        }
+        {errors.filter(err => err['field'] === 'last_name').length === 0 ? (
+          <TextField
+            variant="outlined"
+            margin="normal"
+            required
+            fullWidth
+            id="last_name"
+            label="Last Name"
+            name="last_name"
+            autoComplete="last_name"
+          />
+        ) :
+          <TextField
+            error
+            helperText={errors.filter(err => err['field'] === 'last_name').map(err => err.message)}
             variant="outlined"
             margin="normal"
             required
@@ -121,7 +149,22 @@ export default function SignUpForm(props) {
             autoComplete="last_name"
             autoFocus
           />
+        }
+        {errors.filter(err => err['field'] === 'email').length === 0 ? (
           <TextField
+            variant="outlined"
+            margin="normal"
+            required
+            fullWidth
+            id="email"
+            label="Email Address"
+            name="email"
+            autoComplete="email"
+          />
+        ) :
+          <TextField
+            error
+            helperText={errors.filter(err => err['field'] === 'email').map(err => err.message)}
             variant="outlined"
             margin="normal"
             required
@@ -132,7 +175,23 @@ export default function SignUpForm(props) {
             autoComplete="email"
             autoFocus
           />
+        }
+        {errors.filter(err => err['field'] === 'phone').length === 0 ? (
           <TextField
+            variant="outlined"
+            margin="normal"
+            required
+            fullWidth
+            id="phone"
+            label="Phone"
+            name="phone"
+            autoComplete="phone"
+            type="number"
+          />
+        ) :
+          <TextField
+            error
+            helperText={errors.filter(err => err['field'] === 'phone').map(err => err.message)}
             variant="outlined"
             margin="normal"
             required
@@ -144,51 +203,81 @@ export default function SignUpForm(props) {
             type="number"
             autoFocus
           />
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            name="password"
-            label="Password"
-            type="password"
-            id="password"
-          />
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            name="password_confirmation"
-            label="Password Confirmation"
-            type="password"
-            id="password_confirmation"
-          />
-
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            color="primary"
-            className={classes.submit}
-          >Sign Up</Button>
-          <Grid container>
-            <Grid item xs>
-              <Link href="#" variant="body2">
-                Forgot password?
+        }
+        {errors.filter(err => err['field'] === 'password' || err['field'] === 'password_confirmation').length === 0 ? (
+          <>
+            <TextField
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              name="password"
+              label="Password"
+              type="password"
+              id="password"
+            />
+            <TextField
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              name="password_confirmation"
+              label="Password Confirmation"
+              type="password"
+              id="password_confirmation"
+            />
+          </>
+        ) :
+          <>
+            <TextField
+              error
+              helperText={errors.filter(err => err['field'] === 'password' || err['field'] === 'password_confirmation').map(err => err.message)}
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              name="password"
+              label="Password"
+              type="password"
+              id="password"
+              autofocus
+            />
+            <TextField
+              error
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              name="password_confirmation"
+              label="Password Confirmation"
+              type="password"
+              id="password_confirmation"
+            />
+          </>
+        }
+        <Button
+          type="submit"
+          fullWidth
+          variant="contained"
+          color="primary"
+          className={classes.submit}
+        >Sign Up</Button>
+        <Grid container>
+          <Grid item xs>
+            <Link href="#" variant="body2">
+              Forgot password?
                 </Link>
-            </Grid>
-            <Grid item>
-              <Link href="/sign_in" variant="body2">
-                {"Already have an account? Sign In"}
-              </Link>
-            </Grid>
           </Grid>
-          <Box mt={5}>
-            <Copyright />
-          </Box>
-        </form>
-      </div>
-    </Grid>
+          <Grid item>
+            <Link href="/sign_in" variant="body2">
+              {"Already have an account? Sign In"}
+            </Link>
+          </Grid>
+        </Grid>
+        <Box mt={5}>
+          <Copyright />
+        </Box>
+      </form>
+    </div>
   );
 }

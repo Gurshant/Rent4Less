@@ -1,47 +1,34 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
 import { Listing } from "../requests";
-import ListingDetails from "./ListingDetails";
+import ListingHeader from "./ListingHeader";
+import ListingImageContact from './ListingImageContact';
+import ListingDetailNav from './ListingDetailNav';
+import ProgressSpinner from "./ProgressSpinner";
+import Footer from "./Footer"
 
-class ListingShowPage extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      listing: null,
-      isLoading: true
-    };
-  }
+function ListingShowPage(props) {
 
-  componentDidMount() {
-    Listing.one(this.props.match.params.id).then(listing => {
-      this.setState({
-        listing,
-        isLoading: false
-      })
+
+  const [listing, setListing] = useState(null);
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    Listing.one(props.match.params.id).then(listing => {
+      setListing(listing)
+      setLoading(false)
     })
-  }
+  }, [])
 
-  deletelisting() {
-    this.setState({
-      listing: null
-    });
+  if (loading) {
+    return (<ProgressSpinner />)
   }
-
-  render() {
-    if (this.state.isLoading) {
-      return (<h1>hello</h1>)
-    }
-    return (
-      <main>
-        <ListingDetails {...this.state.listing} />
-        <button
-          className="ui right floated red small button"
-          onClick={() => this.deleteListing()}
-        >
-          Delete
-        </button>
-      </main>
-    );
-  }
+  return (
+    <main>
+      <ListingHeader {...listing} />
+      <ListingImageContact {...listing} />
+      <ListingDetailNav {...listing} />
+      <Footer />
+    </main>
+  );
 }
 
 export default ListingShowPage;
