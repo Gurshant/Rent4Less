@@ -19,14 +19,11 @@ class Api::V1::ListingsController < Api::ApplicationController
   def create
     listing = Listing.new(listing_params)
     listing.user = current_user
+    if params.require(:listing)
+      listing.image = params.require(:listing).permit[:image]
+      byebug
+    end
     byebug
-    # if listing.save
-    #   render json: {id: listing.id}
-    # else
-    #   byebug
-    #   render json:  {errors: listing.errors},
-    #   status: 422 #Unprocessable entity
-    # end
     listing.save!
     render json: { id: listing.id }
   end
@@ -52,6 +49,7 @@ class Api::V1::ListingsController < Api::ApplicationController
  
     def listing_params
       params.require(:listing).permit(:street_number, :route, :locality, :administrative_area_level_1, :postal_code, :country, :latitude, :longitude,:bedroom, :bathroom, :sqft, :ac, :fireplace, :deck, :price, :description, :is_active, :pet_friendly, :smoking, :parking, :gym, :laundromat, :image)
+     
       # params.require(:listing).tap do |whitelisted|
       #     whitelisted[:image] = params[:listing][:image].permit!
       # end`
