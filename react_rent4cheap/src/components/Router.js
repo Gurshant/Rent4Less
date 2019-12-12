@@ -15,7 +15,7 @@ import { User, Session } from "../requests";
 
 import { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
 
-import './HomePage.css'
+import './App.css'
 import ProgressSpinner from './ProgressSpinner';
 
 

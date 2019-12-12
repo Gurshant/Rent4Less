@@ -2,7 +2,7 @@ import React from "react";
 import Typography from '@material-ui/core/Typography';
 import Slider from '@material-ui/core/Slider';
 import Button from '@material-ui/core/Button';
-import './HomePage.css'
+import './App.css'
 import Checkbox from '@material-ui/core/Checkbox';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 
@@ -16,6 +16,7 @@ function FilterForm(props) {
       bedroom: fd.get("bedroom"),
       bathroom: fd.get("bathroom"),
       sqft: fd.get("sqft"),
+      price: fd.get("price"),
       pet_friendly: fd.get("pet_friendly"),
       smoking: fd.get("smoking"),
       parking: fd.get("parking"),

@@ -8,7 +8,7 @@ import Typography from '@material-ui/core/Typography';
 import Footer from './Footer'
 
 import { makeStyles } from '@material-ui/core/styles';
-import './HomePage.css'
+import './App.css'
 
 
 class HomePage extends Component {

@@ -317,3 +317,6 @@ input:-internal-autofill-selected {
 .copyright_sign_in{
   padding-top: 4em;
 }
+.navbar_buttons{
+  margin-right: .5em !important;
+}
