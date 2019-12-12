@@ -39,6 +39,17 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
+const getBase64 = (file, cb) => {
+  let reader = new FileReader();
+  reader.readAsDataURL(file);
+  reader.onload = function () {
+    cb(reader.result)
+  };
+  reader.onerror = function (error) {
+    console.log('Error: ', error);
+  };
+}
+
 export default function ListingNewForm(props) {
   const classes = useStyles();
 
@@ -59,14 +70,27 @@ export default function ListingNewForm(props) {
   }, [])
 
   const createListing = params => {
-    debugger;
-    Listing.create(params).then(listing => {
-      if (listing.errors) {
-        setErrors([listing.errors])
-      } else {
-        console.log(params)
-        props.props.history.push(`/listings/${listing.id}`);
-      }
+    // 1. make a request to S3 and save the image there 
+    // 2. with the link you get back change the params.image to that link
+    // 3. save that link in a field in your listings table
+    // 4. when you loop throught listings, when you try to get listings (all()), for the image column generate an img tag with source = to the link you have saved in your listings table and you got back
+
+    // debugger;
+    let listingImage = '';
+    getBase64(params.image, (result) => {
+      listingImage = result;
+
+      params.image = listingImage;// add the link of the image that you've saved in s3 
+
+      debugger;
+
+      Listing.create(params).then(listing => {
+        if (listing.errors) {
+          setErrors([listing.errors])
+        } else {
+          props.props.history.push(`/listings/${listing.id}`);
+        }
+      });
     });
   };
 

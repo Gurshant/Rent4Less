@@ -71,7 +71,6 @@ export default function SignUpForm(props) {
     createUser(signUpParams);
   }
   const createUser = (signUpParams) => {
-
     User.create(signUpParams).then(user => {
       if (user.errors) {
         setErrors(user.errors);
@@ -85,7 +84,6 @@ export default function SignUpForm(props) {
           props.props.history.push("/");
         })
       }
-      debugger;
     })
   }
   return (
