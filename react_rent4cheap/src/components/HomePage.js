@@ -1,13 +1,9 @@
 import React, { Component } from 'react'
-import Contact_Us_img from './images/phone.jpg'
 import GoogleAutocomplete from './GoogleAutocomplete'
 import Button from '@material-ui/core/Button';
 import NavBar from "./NavBar";
-import ButtonBase from '@material-ui/core/ButtonBase';
-import Typography from '@material-ui/core/Typography';
 import Footer from './Footer'
 
-import { makeStyles } from '@material-ui/core/styles';
 import './App.css'
 
 

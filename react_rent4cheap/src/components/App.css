@@ -13,14 +13,13 @@ html {
 /* Search Bar */
 .search_bar {
   margin-top: 7em;
-  display: flex;
-  justify-content: center;
+  /* display: flex; */
+  /* justify-content: center; */
 }
 
 .ui.fluid.dropdown {
   font-size: 2em;
   background: rgba(0, 0, 0, 0.4);
-  padding: 0;
   border: none;
   padding: .5em 1em;
   color: white;
@@ -320,3 +319,49 @@ input:-internal-autofill-selected {
 .navbar_buttons{
   margin-right: .5em !important;
 }
+.logo{
+  padding-top: .1em;
+  width: 1em;
+  height: 1em;
+}
+.logo_text{
+  color: white;
+  text-decoration: none;
+  font-size: 2em;
+  font-family: 'Vollkorn', serif;
+}
+.scrollable_child .ui.fluid.dropdown{
+  font-size: 1.5em;
+  background: rgba(13, 54, 6, .8);
+  border: none;
+  padding: .5em 1em;
+  color: white;
+  width: 100%;
+  border-radius: 5px;
+}
+.makeStyles-paper-215 .ui.fluid.dropdown{
+  font-size: 1.5em;
+  background: rgba(13, 54, 6, .8);
+  border: none;
+  padding: .7em 1em;
+  color: white;
+  width: 100%;
+  border-radius: 3px;
+}
+
+.ui.fluid.dropdown:focus {
+  outline-color: rgba(13, 54, 6);
+}
+
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus textarea:-webkit-autofill,
+  textarea:-webkit-autofill:hover textarea:-webkit-autofill:focus,
+  select:-webkit-autofill,
+  select:-webkit-autofill:hover,
+  select:-webkit-autofill:focus {
+    -webkit-box-shadow: 0 0 0px 1000px #ffffff inset !important;
+  }
+  .autocomplete-dropdown-container{
+    width: 100%;
+  }

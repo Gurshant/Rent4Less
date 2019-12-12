@@ -8,6 +8,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
+import logo from './images/logo.png'
 
 import './App.css'
 
@@ -43,8 +44,7 @@ export default function NavBar(props) {
     <AppBar position="static" className={classes.root}>
       <Toolbar className={classes.toolbar}>
         <div>
-          <Button color="inherit" size="large" href="/" > Home <img src='./images/logo.png' /> Life</Button>
-          <Button color="inherit" size="large" href="/listings">Listings</Button>
+          <a className='logo_text' href="/" > Rent <img src={logo} className="logo" />  Less</a>
         </div>
         {/* <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
             <MenuIcon />

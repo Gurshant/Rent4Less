@@ -55,6 +55,8 @@ export default function ListingNewForm(props) {
 
 
   const [errors, setErrors] = useState([]);
+  const [file, setFile] = useState({});
+
   const [address, setAddress] = useState('');
   const [values, setValues] = useState({
     street_number: '',
@@ -66,7 +68,7 @@ export default function ListingNewForm(props) {
   });
   // Component did mount
   useEffect(() => {
-    props.props.handlePlaceholder('Enter the rental Address')
+    props.props.handlePlaceholder('Enter Rental Address Here***')
   }, [])
 
   const createListing = params => {
@@ -74,6 +76,26 @@ export default function ListingNewForm(props) {
     // 2. with the link you get back change the params.image to that link
     // 3. save that link in a field in your listings table
     // 4. when you loop throught listings, when you try to get listings (all()), for the image column generate an img tag with source = to the link you have saved in your listings table and you got back
+    console.log(params)
+
+    // let formData = new FormData();
+    console.log('pre image', params.image)
+    console.log('file', file)
+    params.image = file;
+    // debugger;
+
+    // if (params) {
+    //   Object.entries(params).forEach(([key, value]) => {
+    //     formData.append(key, value)
+    //     console.log('value', value)
+    //   })
+    //   // image.append('uploaded_image', params.image);
+    //   // this.sendImageToController(image)
+    //   console.log(formData)
+    //   debugger;
+    // }
+    // params.image = image
+    // params = formData
 
     // debugger;
     let listingImage = '';
@@ -81,8 +103,8 @@ export default function ListingNewForm(props) {
       listingImage = result;
 
       params.image = listingImage;// add the link of the image that you've saved in s3 
-
-      debugger;
+      console.log(params)
+      // debugger;
 
       Listing.create(params).then(listing => {
         if (listing.errors) {
@@ -96,6 +118,11 @@ export default function ListingNewForm(props) {
 
   const handleSearchChange = (address) => {
     setAddress(address)
+  }
+  const handleFile = (event) => {
+    const { target } = event;
+    setFile(target.files[0])
+    debugger;
   }
 
   const usableAddressParams = ['street_number', 'route', 'locality', 'administrative_area_level_1', 'country', 'postal_code']
@@ -124,30 +151,31 @@ export default function ListingNewForm(props) {
     event.preventDefault();
     const { currentTarget } = event;
     const fd = new FormData(currentTarget);
-    createListing({
-      street_number: fd.get("street_number"),
-      route: fd.get("route"),
-      locality: fd.get("locality"),
-      administrative_area_level_1: fd.get("administrative_area_level_1"),
-      postal_code: fd.get("postal_code"),
-      country: fd.get("country"),
-      lat: fd.get("lat"),
-      lng: fd.get("lng"),
-      bedroom: fd.get("bedroom"),
-      bathroom: fd.get("bathroom"),
-      sqft: fd.get("sqft"),
-      ac: fd.get("ac"),
-      fireplace: fd.get("fireplace"),
-      deck: fd.get("deck"),
-      price: fd.get("price"),
-      description: fd.get("deck"),
-      smoking: fd.get("smoking"),
-      laundromat: fd.get("laundromat"),
-      gym: fd.get("gym"),
-      parking: fd.get("parking"),
-      pet_friendly: fd.get("pet_friendly"),
-      image: fd.get("image")
-    });
+    createListing(fd);
+    // createListing({
+    //   street_number: fd.get("street_number"),
+    //   route: fd.get("route"),
+    //   locality: fd.get("locality"),
+    //   administrative_area_level_1: fd.get("administrative_area_level_1"),
+    //   postal_code: fd.get("postal_code"),
+    //   country: fd.get("country"),
+    //   lat: fd.get("lat"),
+    //   lng: fd.get("lng"),
+    //   bedroom: fd.get("bedroom"),
+    //   bathroom: fd.get("bathroom"),
+    //   sqft: fd.get("sqft"),
+    //   ac: fd.get("ac"),
+    //   fireplace: fd.get("fireplace"),
+    //   deck: fd.get("deck"),
+    //   price: fd.get("price"),
+    //   description: fd.get("deck"),
+    //   smoking: fd.get("smoking"),
+    //   laundromat: fd.get("laundromat"),
+    //   gym: fd.get("gym"),
+    //   parking: fd.get("parking"),
+    //   pet_friendly: fd.get("pet_friendly"),
+    //   image: fd.get("image")
+    // });
   }
   return (
     <div className={classes.paper}>
@@ -313,6 +341,7 @@ export default function ListingNewForm(props) {
         />
         <div className='upload_img'>
           <input
+            onChange={handleFile}
             name='image'
             accept="image/*"
             // className={classes.input}

@@ -1,19 +1,20 @@
 import React, { useState } from 'react';
-import Grid from '@material-ui/core/Grid';
 
+import GoogleLogin from 'react-google-login';
+
+import Grid from '@material-ui/core/Grid';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import Link from '@material-ui/core/Link';
 import Typography from '@material-ui/core/Typography';
-
 import TextField from '@material-ui/core/TextField';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import Paper from '@material-ui/core/Paper';
 import Box from '@material-ui/core/Box';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
-
 import { makeStyles } from '@material-ui/core/styles';
+
 import { Session } from '../requests';
 
 const useStyles = makeStyles(theme => ({
@@ -73,6 +74,9 @@ export default function SignInForm(props) {
       }
     })
   }
+  const responseGoogle = (response) => {
+    console.log(response);
+  }
   return (
     <div className={classes.paper}>
       <Avatar className={classes.avatar}>
@@ -80,7 +84,14 @@ export default function SignInForm(props) {
       </Avatar>
       <Typography component="h1" variant="h5">
         Sign in
-          </Typography>
+      </Typography>
+      <GoogleLogin
+        clientId="658977310896-knrl3gka66fldh83dao2rhgbblmd4un9.apps.googleusercontent.com"
+        buttonText="Login"
+        onSuccess={responseGoogle}
+        onFailure={responseGoogle}
+        cookiePolicy={'single_host_origin'}
+      />
       <form className={classes.form} onSubmit={createSession}>
         <>
           <TextField

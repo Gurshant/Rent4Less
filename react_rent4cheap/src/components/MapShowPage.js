@@ -45,7 +45,7 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-  }
+  },
 }));
 
 function MapShowPage(props) {
@@ -70,7 +70,7 @@ function MapShowPage(props) {
   useEffect(() => {
     let params = { sqft: 0, bedroom: 0, bathroom: 0 }
     filterMarker(params);
-    props.handlePlaceholder('Search a location or neighborhood')
+    props.handlePlaceholder('Center map on a location or neighborhood')
   }, [])
   let icon = new L.Icon({
     iconUrl: marker,
@@ -119,13 +119,17 @@ function MapShowPage(props) {
           <div className='scrollable_child'>
             <div className={classes.paper}>
               <GoogleAutocomplete
-                className='hello'
+
+                id='hello'
                 placeholder={props.placeholder}
                 handleSelect={props.handleSelect}
                 handleChange={props.handleChange}
                 address={props.address}
+              /><br />
+              <FilterForm
+
+                filterMarker={params => filterMarker(params)}
               />
-              <FilterForm filterMarker={params => filterMarker(params)} />
             </div>
           </div>
         </Grid>

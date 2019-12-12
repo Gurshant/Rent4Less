@@ -15,15 +15,14 @@ function GoogleAutocomplete(props) {
         })}
       />
       <div className="autocomplete-dropdown-container">
-        {loading && <ProgressSpinner />}
         {suggestions.map(suggestion => {
           const className = suggestion.active
             ? 'suggestion-item--active'
             : 'suggestion-item';
           // inline style for demonstration purpose
           const style = suggestion.active
-            ? { backgroundColor: '#fafafa', borderTop: '1px solid #fafafa', padding: '.78571429rem 1.14285714rem', whiteSpace: 'normal', wordWrap: 'normal', cursor: 'auto' }
-            : { backgroundColor: '#ffffff', borderTop: '1px solid #fafafa', padding: '.78571429rem 1.14285714rem', whiteSpace: 'normal', wordWrap: 'normal', cursor: 'pointer' };
+            ? { width: '100%', backgroundColor: 'rgba(13, 54, 6, .6)', borderTop: '1px solid #fafafa', padding: '.78571429rem 1.14285714rem', whiteSpace: 'normal', wordWrap: 'normal', cursor: 'pointer', color: 'white' }
+            : { backgroundColor: '#ffffff', borderTop: '1px solid #fafafa', padding: '.78571429rem 1.14285714rem', whiteSpace: 'normal', wordWrap: 'normal', cursor: 'auto' };
           return (
             <div
               {...getSuggestionItemProps(suggestion, {
