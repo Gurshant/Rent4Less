@@ -13,6 +13,7 @@ class Api::V1::ListingsController < Api::ApplicationController
   
   def show 
     listing = Listing.find(params[:id])
+    # byebug
     render json: listing
   end
 
@@ -26,7 +27,7 @@ class Api::V1::ListingsController < Api::ApplicationController
     #   end
     # end
 
-    byebug
+    # byebug
     # require 'base64'
     # decoded = Base64.decode64(params[:image])
 
@@ -35,7 +36,7 @@ class Api::V1::ListingsController < Api::ApplicationController
 
     # listing.image=decoded
     listing.user = current_user
-    byebug
+    # byebug
     listing.save!
     render json: { id: listing.id }
   end
