@@ -27,7 +27,7 @@ function ListingHeader(props) {
       <CssBaseline />
       <Grid item component="section" xs={12} sm={12} md={8}  >
         <Typography component="h1" variant='h4' align="left"  >
-          ${props.price}<span className='time grey_text'> - 2 months ago</span>
+          ${props.price}<span className='time grey_text'> - Few minutes ago</span>
         </Typography>
         <Typography component="h3" variant='h6' align="left" className='grey_text'>
           {props.street_number} {props.route}, {props.locality} {props.administrative_area_level_1}

@@ -16,17 +16,18 @@ const Listing = {
       credentials: "include"
     }).then(res => res.json());
   },
-  // creating a listing
+  // creating a listing 
   create(params) {
-    // `params` is an object that represents a listing
-    // { body: 'qBody', title: 'qTitle' }
     return fetch(`${BASE_URL}/listings`, {
       method: "POST",
       credentials: "include",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(params)
+      // headers: {
+      //   "Content-Type": "multipart/form-data"
+      //   // "Content-Type": "application/json"
+
+      // },
+      body: params
+      // body: JSON.stringify(params)
     }).then(res => res.json());
   },
   // updating a listing

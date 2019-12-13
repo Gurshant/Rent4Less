@@ -8,8 +8,9 @@ import MenuItem from '@material-ui/core/MenuItem';
 
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
+import logo from './images/logo.png'
 
-import './HomePage.css'
+import './App.css'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -35,20 +36,26 @@ export default function NavBar(props) {
   const handleClose = () => {
     setAnchorEl(null);
   };
+  const listingLink = () => {
+
+  }
   const open = Boolean(anchorEl);
   return (
     <AppBar position="static" className={classes.root}>
       <Toolbar className={classes.toolbar}>
         <div>
-          <Button color="inherit" size="large" href="/" > Home</Button>
-
-          <Button color="inherit" size="large" href="/listings">Listings</Button>
+          <a className='logo_text' href="/" > Rent <img src={logo} className="logo" />  Less</a>
         </div>
         {/* <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
             <MenuIcon />
           </IconButton> */}
         {currentUser ? (
           <span >
+            <Button edge="end" variant="outlined" size="large" color="primary" className="button navbar_buttons" href="/listings">Find a Home</Button>
+
+            <Button edge="end" variant="outlined" size="large" color="primary" className="button navbar_buttons" href="/#">My Rentals</Button>
+
+            <Button edge="end" variant="outlined" size="large" color="primary" className="button navbar_buttons" href="/listings/new">New Rental</Button>
             <IconButton
               aria-label="account of current user"
               aria-controls="menu-appbar"
@@ -74,11 +81,15 @@ export default function NavBar(props) {
               onClose={handleClose}
             >
               <MenuItem onClick={handleClose}>Profile</MenuItem>
+              <MenuItem onClick={handleClose}>My Listings</MenuItem>
               <MenuItem onClick={onSignOut}>Log Out</MenuItem>
             </Menu>
           </span>
         ) : (
-            <span ><Button edge="end" variant="outlined" size="large" color="primary" className="button" href="http://localhost:3001/sign_up">Sign Up</Button> <Button edge="end" variant="outlined" size="large" color="primary" className="button" href="http://localhost:3001/sign_in">Login</Button>
+            <span >
+              <Button edge="end" variant="outlined" size="large" color="primary" className="button navbar_buttons" href="/listings">Find a Home</Button>
+              <Button edge="end" variant="outlined" size="large" color="primary" className="button navbar_buttons" href="/sign_up">Sign Up</Button>
+              <Button edge="end" variant="outlined" size="large" color="primary" className="button navbar_buttons" href="/sign_in">Login</Button>
             </span>
           )
         }

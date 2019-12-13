@@ -30,7 +30,7 @@ module RentForCheap
     # the framework and any gems in your application.
 
     # Don't generate system test files.
-    config.active_job.queue_adapter = :delayed_job
+    # config.active_job.queue_adapter = :delayed_job
 
     config.generators.system_tests = nil
 

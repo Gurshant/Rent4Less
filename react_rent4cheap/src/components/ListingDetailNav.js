@@ -31,7 +31,7 @@ import { Map, TileLayer, Marker, Popup, Leaflet } from "react-leaflet";
 import L from 'leaflet'
 
 
-import './HomePage.css'
+import './App.css'
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -116,7 +116,6 @@ export default function ListingDetailNav(props) {
           Description
         </Typography>
         <Typography component="h1" variant='h6' align="left" align='left' className='grey_text'>
-          Beautiful Property
           {props.description}
           <br />
           <br />

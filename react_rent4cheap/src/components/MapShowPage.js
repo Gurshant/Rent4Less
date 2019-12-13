@@ -45,7 +45,7 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-  }
+  },
 }));
 
 function MapShowPage(props) {
@@ -55,6 +55,7 @@ function MapShowPage(props) {
 
 
   const filterMarker = (params) => {
+    console.log(params);
     Listing.all().then(listings => {
       let valid = listings.filter(list => (list.latitude && list.sqft >= params.sqft && list.bedroom >= params.bedroom && list.bathroom >= params.bathroom && (params.price ? list.price <= params.price : true) && (params.ac ? list.ac : true) && (params.deck ? list.deck : true) && (params.fireplace ? list.fireplace : true) && (params.pet_friendly ? list.pet_friendly : true) && (params.smoking ? list.smoking : true) && (params.parking ? list.parking : true) && (params.gym ? list.gym : true) && (params.laundromat ? list.laundromat : true)));
       setListings(valid)
@@ -69,7 +70,7 @@ function MapShowPage(props) {
   useEffect(() => {
     let params = { sqft: 0, bedroom: 0, bathroom: 0 }
     filterMarker(params);
-    props.handlePlaceholder('Search a location or neighborhood')
+    props.handlePlaceholder('Center map on a location or neighborhood')
   }, [])
   let icon = new L.Icon({
     iconUrl: marker,
@@ -118,13 +119,17 @@ function MapShowPage(props) {
           <div className='scrollable_child'>
             <div className={classes.paper}>
               <GoogleAutocomplete
-                className='hello'
+
+                id='hello'
                 placeholder={props.placeholder}
                 handleSelect={props.handleSelect}
                 handleChange={props.handleChange}
                 address={props.address}
+              /><br />
+              <FilterForm
+
+                filterMarker={params => filterMarker(params)}
               />
-              <FilterForm filterMarker={params => filterMarker(params)} />
             </div>
           </div>
         </Grid>
