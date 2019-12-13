@@ -8,7 +8,6 @@ import Footer from "./Footer"
 
 function ListingShowPage(props) {
 
-
   const [listing, setListing] = useState(null);
   const [loading, setLoading] = useState(true);
   useEffect(() => {

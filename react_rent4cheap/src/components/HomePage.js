@@ -39,7 +39,7 @@ class HomePage extends Component {
           <section className="section static">
             <div className="inner">
               <h1>Real Time Updates</h1>
-              <h2>Registering your rental property with Rent4Cheap.ca provides you with unrivaled support from a team that understands how to showcase your rental property online and will provide valuable rental support from our property management experts.</h2>
+              <h2>Finding homes for rent has never been easier! Rent4Less updates its rental listings every day, which means you’re the first to see when new vacancies become available in your favourite neighbourhoods.</h2>
               <div className="button-container"><Button variant="outlined" size="large" color="primary" className="button_in_parallax" >
                 Learn More
             </Button></div>
@@ -50,7 +50,7 @@ class HomePage extends Component {
           <section className="section static">
             <div className="inner">
               <h1>Quality Listings</h1>
-              <h2>Registering your rental property with Rent4Cheap.ca provides you with unrivaled support from a team that understands how to showcase your rental property online and will provide valuable rental support from our property management experts.</h2>
+              <h2>Registering your rental property with Rent4Less.ca provides you with unrivaled support from a team that understands how to showcase your rental property online and will provide valuable rental support from our property management experts.</h2>
               <div className="button-container"><Button variant="outlined" size="large" color="primary" className="button_in_parallax" >
                 Sign Up
             </Button></div></div>
@@ -59,7 +59,7 @@ class HomePage extends Component {
           <section className="section static">
             <div className="inner">
               <h1>Quick Support</h1>
-              <h2>Registering your rental property with Rent4Cheap.ca provides you with unrivaled support from a team that understands how to showcase your rental property online and will provide valuable rental support from our property management experts.
+              <h2>Registering your rental property with Rent4Less.ca provides you with unrivaled support from a team that understands how to showcase your rental property online and will provide valuable rental support from our property management experts.
               </h2>
               <div className="button-container">
                 <Button variant="outlined" size="large" color="primary" className="button_in_parallax" >

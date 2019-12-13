@@ -122,7 +122,7 @@ export default function ListingNewForm(props) {
   const handleFile = (event) => {
     const { target } = event;
     setFile(target.files[0])
-    debugger;
+    // debugger;
   }
 
   const usableAddressParams = ['street_number', 'route', 'locality', 'administrative_area_level_1', 'country', 'postal_code']
@@ -344,12 +344,12 @@ export default function ListingNewForm(props) {
             onChange={handleFile}
             name='image'
             accept="image/*"
-            // className={classes.input}
+            className={classes.input}
             id="contained-button-file"
             multiple
             type="file"
           />
-          {/* <label htmlFor="contained-button-file">
+          <label htmlFor="contained-button-file">
             <Button
               variant="outlined"
               size="large"
@@ -358,7 +358,7 @@ export default function ListingNewForm(props) {
               className="button_in_parallax "
             >Upload Images
           </Button>
-          </label> */}
+          </label>
         </div>
 
         <Typography component="h1" variant="h5" align="left">
