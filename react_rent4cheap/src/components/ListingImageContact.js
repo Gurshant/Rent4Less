@@ -1,8 +1,5 @@
 import React from 'react'
 
-import HotelIcon from '@material-ui/icons/Hotel';
-import BathtubIcon from '@material-ui/icons/Bathtub';
-import SquareFootIcon from '@material-ui/icons/SquareFoot';
 import PhoneIcon from '@material-ui/icons/Phone';
 import EmailIcon from '@material-ui/icons/Email';
 import Typography from '@material-ui/core/Typography';
@@ -30,7 +27,7 @@ function ListingImageContact(props) {
     <Grid container component={Paper} elevation={0} className={classes.paper}>
       <CssBaseline />
       <Grid item component="section" xs={12} sm={12} md={7}  >
-        <MultipleImageHandler props={props} />
+        <MultipleImageHandler photo={props.photo} />
       </Grid>
       <Grid item component="section" xs={12} sm={12} md={5} className='center_horizontal'>
         <Typography component="h1" variant='h4'>

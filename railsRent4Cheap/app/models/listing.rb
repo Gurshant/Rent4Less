@@ -2,7 +2,7 @@ class Listing < ApplicationRecord
   before_validation :set_is_active
   belongs_to :user
   # aws storage
-  has_one_attached :image
+  has_many_attached :images
 
 
   validates :street_number, :route, :locality, :administrative_area_level_1, :postal_code, :country, :bedroom, :bathroom, :sqft, :price, presence: true

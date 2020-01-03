@@ -13,31 +13,14 @@ class Api::V1::ListingsController < Api::ApplicationController
   
   def show 
     listing = Listing.find(params[:id])
-    # byebug
     render json: listing
   end
 
   def create
-
-    # url = URI.parse('http://www.example.com/upload')
-    #   File.open("./image.jpg") do |file|
-    #   req = Net::HTTP::Post::Multipart.new(url.path, params(file))
-    #   res = Net::HTTP.start(url.host, url.port) do |http|
-    #     return http.request(req).body
-    #   end
-    # end
-
-    # byebug
-    # require 'base64'
-    # decoded = Base64.decode64(params[:image])
-
     listing = Listing.new(listing_params)
-    # File.open('image.png', 'wb') { |f| f.write(decoded) }
-
-    # listing.image=decoded
     listing.user = current_user
-    # byebug
     listing.save!
+    # render json: listing
     render json: { id: listing.id }
   end
 
@@ -60,12 +43,7 @@ class Api::V1::ListingsController < Api::ApplicationController
   end
   private
     def listing_params
-      # params[:image] = UploadIO.new(file, "image/jpeg", "image.jpg")
-      params.permit(:street_number, :route, :locality, :administrative_area_level_1, :postal_code, :country, :latitude, :longitude,:bedroom, :bathroom, :sqft, :ac, :fireplace, :deck, :price, :description, :is_active, :pet_friendly, :smoking, :parking, :gym, :laundromat, :image)
-     
-      # params.require(:listing).tap do |whitelisted|
-      #     whitelisted[:image] = params[:listing][:image].permit!
-      # end`
+      params.permit(:street_number, :route, :locality, :administrative_area_level_1, :postal_code, :country, :latitude, :longitude,:bedroom, :bathroom, :sqft, :ac, :fireplace, :deck, :price, :description, :is_active, :pet_friendly, :smoking, :parking, :gym, :laundromat, :images)
     end
 
     def find_listing
