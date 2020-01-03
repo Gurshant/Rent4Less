@@ -39,16 +39,17 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const getBase64 = (file, cb) => {
-  let reader = new FileReader();
-  reader.readAsDataURL(file);
-  reader.onload = function () {
-    cb(reader.result)
-  };
-  reader.onerror = function (error) {
-    console.log('Error: ', error);
-  };
-}
+// const getBase64 = (file, cb) => {
+//   let reader = new FileReader();
+// reader.readAsDataURL(file);A
+
+//   reader.onload = function () {
+//     cb(reader.result)
+//   };
+//   reader.onerror = function (error) {
+//     console.log('Error: ', error);
+//   };
+// }
 
 export default function ListingNewForm(props) {
   const classes = useStyles();
@@ -72,47 +73,35 @@ export default function ListingNewForm(props) {
   }, [])
 
   const createListing = params => {
-    // 1. make a request to S3 and save the image there 
-    // 2. with the link you get back change the params.image to that link
-    // 3. save that link in a field in your listings table
-    // 4. when you loop throught listings, when you try to get listings (all()), for the image column generate an img tag with source = to the link you have saved in your listings table and you got back
     console.log(params)
 
-    // let formData = new FormData();
-    console.log('pre image', params.image)
-    console.log('file', file)
-    params.image = file;
-    // debugger;
+    debugger;
 
-    // if (params) {
-    //   Object.entries(params).forEach(([key, value]) => {
-    //     formData.append(key, value)
-    //     console.log('value', value)
-    //   })
-    //   // image.append('uploaded_image', params.image);
-    //   // this.sendImageToController(image)
-    //   console.log(formData)
-    //   debugger;
-    // }
-    // params.image = image
-    // params = formData
+    // Array.prototype.forEach.call(file, function (img) {
+    //   console.log(img)
+    //   let reader = new FileReader();
+    //   reader.readAsDataURL(img)
+    //   reader.onload = function () {
+    //     // reader.result.push(reader.readAsDataURL(file[i]))
+    //     console.log(reader.result)
+    //     // result.push(reader.result)
+    //     if (params.image.length != file.length) {
+    //       params.image.push(reader.result)
+    //       params.image = [];
+    //       debugger;
+    //     }
+    //   }
+    // });
 
-    // debugger;
-    let listingImage = '';
-    getBase64(params.image, (result) => {
-      listingImage = result;
-
-      params.image = listingImage;// add the link of the image that you've saved in s3 
-      console.log(params)
-      // debugger;
-
-      Listing.create(params).then(listing => {
-        if (listing.errors) {
-          setErrors([listing.errors])
-        } else {
-          props.props.history.push(`/listings/${listing.id}`);
-        }
-      });
+    debugger;
+    console.log(params)
+    Listing.create(params).then(listing => {
+      debugger;
+      if (listing.errors) {
+        setErrors([listing.errors])
+      } else {
+        props.props.history.push(`/listings/${listing.id}`);
+      }
     });
   };
 
@@ -121,14 +110,12 @@ export default function ListingNewForm(props) {
   }
   const handleFile = (event) => {
     const { target } = event;
-    setFile(target.files[0])
-    // debugger;
+    setFile(target.files)
   }
 
   const usableAddressParams = ['street_number', 'route', 'locality', 'administrative_area_level_1', 'country', 'postal_code']
 
   const handleSearchSelect = (address) => {
-    // debugger 
     handleSearchChange(address);
     setValues({
       street_number: '',
@@ -151,31 +138,7 @@ export default function ListingNewForm(props) {
     event.preventDefault();
     const { currentTarget } = event;
     const fd = new FormData(currentTarget);
-    createListing(fd);
-    // createListing({
-    //   street_number: fd.get("street_number"),
-    //   route: fd.get("route"),
-    //   locality: fd.get("locality"),
-    //   administrative_area_level_1: fd.get("administrative_area_level_1"),
-    //   postal_code: fd.get("postal_code"),
-    //   country: fd.get("country"),
-    //   lat: fd.get("lat"),
-    //   lng: fd.get("lng"),
-    //   bedroom: fd.get("bedroom"),
-    //   bathroom: fd.get("bathroom"),
-    //   sqft: fd.get("sqft"),
-    //   ac: fd.get("ac"),
-    //   fireplace: fd.get("fireplace"),
-    //   deck: fd.get("deck"),
-    //   price: fd.get("price"),
-    //   description: fd.get("deck"),
-    //   smoking: fd.get("smoking"),
-    //   laundromat: fd.get("laundromat"),
-    //   gym: fd.get("gym"),
-    //   parking: fd.get("parking"),
-    //   pet_friendly: fd.get("pet_friendly"),
-    //   image: fd.get("image")
-    // });
+    createListing(fd)
   }
   return (
     <div className={classes.paper}>
@@ -342,14 +305,14 @@ export default function ListingNewForm(props) {
         <div className='upload_img'>
           <input
             onChange={handleFile}
-            name='image'
+            name='images'
             accept="image/*"
-            className={classes.input}
+            // className={classes.input}
             id="contained-button-file"
             multiple
             type="file"
           />
-          <label htmlFor="contained-button-file">
+          {/* <label htmlFor="contained-button-file">
             <Button
               variant="outlined"
               size="large"
@@ -358,7 +321,7 @@ export default function ListingNewForm(props) {
               className="button_in_parallax "
             >Upload Images
           </Button>
-          </label>
+          </label> */}
         </div>
 
         <Typography component="h1" variant="h5" align="left">
