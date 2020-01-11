@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
+import Img from 'react-image'
+
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import MobileStepper from '@material-ui/core/MobileStepper';
 import Button from '@material-ui/core/Button';
@@ -6,6 +8,9 @@ import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
 import SwipeableViews from 'react-swipeable-views';
 import { autoPlay } from 'react-swipeable-views-utils';
+
+import Skeleton from '@material-ui/lab/Skeleton';
+
 
 
 
@@ -27,6 +32,9 @@ const useStyles = makeStyles(theme => ({
     overflow: 'hidden',
     width: '100%',
   },
+  media: {
+    height: '200px'
+  }
 }));
 
 function MultipleImageHandler(props) {
@@ -51,6 +59,8 @@ function MultipleImageHandler(props) {
   const handleStepChange = step => {
     setActiveStep(step);
   };
+  const [loaded, setLoaded] = useState(false);
+
 
   return (
     <div className={classes.root}>
@@ -63,11 +73,21 @@ function MultipleImageHandler(props) {
         {images.map((step, index) => (
 
           <div key={index} className={classes.img}>
-            {/* {Math.abs(activeStep - index) <= 2 ? ( */}
-
-            <img className={classes.img} src={step.imgPath} alt={step.label} />
-
-            {/* ) : console.log('hello')} */}
+            {loaded ? null : (
+              <Skeleton variant="rect" className={classes.img} />
+            )}
+            <img
+              className={classes.img}
+              src={step.imgPath[0]}
+              alt={step.label}
+              style={loaded ? {} : { display: 'none' }}
+              onLoad={() => setLoaded(true)}
+            />
+            {/* <Img
+              className={classes.img}
+              src={step.imgPath[0]}
+              alt={step.label}
+            /> */}
           </div>
         ))}
       </AutoPlaySwipeableViews>
