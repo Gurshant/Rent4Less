@@ -83,11 +83,6 @@ function MultipleImageHandler(props) {
               style={loaded ? {} : { display: 'none' }}
               onLoad={() => setLoaded(true)}
             />
-            {/* <Img
-              className={classes.img}
-              src={step.imgPath[0]}
-              alt={step.label}
-            /> */}
           </div>
         ))}
       </AutoPlaySwipeableViews>
