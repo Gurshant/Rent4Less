@@ -97,14 +97,25 @@ function MapShowPage(props) {
                 <Popup>
                   <Grid container component="main" className={classes.card}>
                     <Grid item sm={5} className={classes.popup} >
-                      <img src={HomeImage} className={classes.image}></img>
+                      {console.log(listing)}
+                      <div className={classes.image}>
+                        {/* {loaded ? null : (
+                          <Skeleton variant="rect" className={classes.image} />
+                        )} */}
+                        <img
+                          className={classes.image}
+                          src={HomeImage}
+                        // style={loaded ? {} : { display: 'none' }}
+                        // onLoad={() => setLoaded(true)}
+                        />
+                      </div>
+                      {/* <img src={HomeImage} className={classes.image}></img> */}
                     </Grid>
                     <Grid item sm={7} component={Paper} elevation={0} >
                       <Typography component="h1" variant='body1' align="left" >
                         ${listing.price}
                       </Typography>
                       <Link href={`/listings/${listing.id}`}>{listing.address}</Link>
-
                       <Typography component="h1" variant='body2' align="right" >
                         {listing.bedroom} <HotelIcon className={classes.icon} /> {listing.bathroom} <BathtubIcon className={classes.icon} />
                       </Typography>
