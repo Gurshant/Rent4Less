@@ -9,7 +9,7 @@ class ListingCollectionSerializer < ActiveModel::Serializer
         # end
         # # byebug
         # end
-        p object
+        # p object
         return url_for(image)
     end
 end
