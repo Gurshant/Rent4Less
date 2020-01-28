@@ -4,6 +4,7 @@ class ListingSerializer < ActiveModel::Serializer
   belongs_to :user, key: :manager
     
   def photo
+    byebug
     urls=[];
     object.images.each do |image|
       if object.images.attached?
