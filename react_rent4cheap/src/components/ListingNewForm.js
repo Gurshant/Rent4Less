@@ -75,7 +75,7 @@ export default function ListingNewForm(props) {
   const createListing = params => {
     console.log(params)
 
-    debugger;
+    // debugger;
 
     // Array.prototype.forEach.call(file, function (img) {
     //   console.log(img)
@@ -93,10 +93,10 @@ export default function ListingNewForm(props) {
     //   }
     // });
 
-    debugger;
+    // debugger;
     console.log(params)
     Listing.create(params).then(listing => {
-      debugger;
+      // debugger;
       if (listing.errors) {
         setErrors([listing.errors])
       } else {

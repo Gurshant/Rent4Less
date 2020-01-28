@@ -8,11 +8,13 @@ class ListingCollectionSerializer < ActiveModel::Serializer
         # byebug
         if object.images.attached?
             # byebug
-            object.images.each do |image|
-                byebug
-                urls.push(url_for(image))
+            return object.images[0].service_url
+            # multiple
+            # object.images.each do |image|
+            #     urls.push(image.service_url)
+            #     # byebug
 
-            end
+            # end
             # urls.push(url_for(object.images[0]))
             # return url_for(image)
         else 
