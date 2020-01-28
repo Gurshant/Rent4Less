@@ -102,12 +102,23 @@ function MapShowPage(props) {
                         {/* {loaded ? null : (
                           <Skeleton variant="rect" className={classes.image} />
                         )} */}
-                        <img
-                          className={classes.image}
-                          src={HomeImage}
-                        // style={loaded ? {} : { display: 'none' }}
-                        // onLoad={() => setLoaded(true)}
-                        />
+                        {listing.photo ? (
+                          <img
+                            className={classes.image}
+                            src={listing.photo}
+                          // style={loaded ? {} : { display: 'none' }}
+                          // onLoad={() => setLoaded(true)}
+                          />
+                        ) : (
+                            <img
+                              className={classes.image}
+                              src={HomeImage}
+                            // style={loaded ? {} : { display: 'none' }}
+                            // onLoad={() => setLoaded(true)}
+                            />
+                          )
+                        }
+
                       </div>
                       {/* <img src={HomeImage} className={classes.image}></img> */}
                     </Grid>
