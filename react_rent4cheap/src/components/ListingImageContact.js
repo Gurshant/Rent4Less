@@ -35,13 +35,13 @@ function ListingImageContact(props) {
         </Typography>
         <Typography component="h1" variant='h5' className='contact'>
           <PhoneIcon className='icon' />
-          <a class="linkToExternal" href={"tel:" + props.manager.phone}>
+          <a className="linkToExternal" href={"tel:" + props.manager.phone}>
             {props.manager.phone.split('').map((num, i) => (i === 0 ? `(${num}` : (i === 2 ? `${num}) ` : (i === 5 ? `${num} - ` : num))))}
           </a>
         </Typography>
         <Typography component="h1" variant='h5' className='contact'>
           <EmailIcon className='icon' />
-          <a class="linkToExternal" href={"mailto:" + props.manager.email + "?subject=" + props.address} >{props.manager.email}
+          <a className="linkToExternal" href={"mailto:" + props.manager.email + "?subject=" + props.address} >{props.manager.email}
           </a>
         </Typography>
       </Grid>

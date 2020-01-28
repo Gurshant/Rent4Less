@@ -73,10 +73,7 @@ export default function ListingNewForm(props) {
   }, [])
 
   const createListing = params => {
-    console.log(params)
-
     // debugger;
-
     // Array.prototype.forEach.call(file, function (img) {
     //   console.log(img)
     //   let reader = new FileReader();
