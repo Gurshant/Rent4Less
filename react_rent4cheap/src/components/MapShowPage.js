@@ -5,7 +5,7 @@ import { Listing } from '../requests'
 import marker from '../marker.svg'
 import FilterForm from './FilterForm'
 import GoogleAutocomplete from './GoogleAutocomplete'
-import HomeImage from './images/home3.jpg'
+import NoImage from './images/no_image_placeholder.png'
 
 
 import Grid from '@material-ui/core/Grid';
@@ -17,6 +17,9 @@ import Link from '@material-ui/core/Link';
 import HotelIcon from '@material-ui/icons/Hotel';
 import BathtubIcon from '@material-ui/icons/Bathtub';
 import ProgressSpinner from "./ProgressSpinner";
+
+import Image from "react-graceful-image";
+
 
 
 
@@ -99,20 +102,16 @@ function MapShowPage(props) {
                     <Grid item sm={5} className={classes.popup} >
                       {console.log(listing)}
                       <div className={classes.image}>
-                        {/* {loaded ? null : (
-                          <Skeleton variant="rect" className={classes.image} />
-                        )} */}
                         {listing.photo ? (
-                          <img
+                          <Image
                             className={classes.image}
                             src={listing.photo}
-                          // style={loaded ? {} : { display: 'none' }}
-                          // sonLoad={() => setLoaded(true)}
+                            retry={{ count: 15, delay: 3, accumulate: "add" }}
                           />
                         ) : (
                             <img
                               className={classes.image}
-                              src={HomeImage}
+                              src={NoImage}
                             // style={loaded ? {} : { display: 'none' }}
                             // onLoad={() => setLoaded(true)}
                             />
