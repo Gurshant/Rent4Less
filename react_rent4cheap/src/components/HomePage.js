@@ -51,9 +51,12 @@ class HomePage extends Component {
             <div className="inner">
               <h1>Quality Listings</h1>
               <h2>Registering your rental property with Rent4Less.ca provides you with unrivaled support from a team that understands how to showcase your rental property online and will provide valuable rental support from our property management experts.</h2>
-              <div className="button-container"><Button variant="outlined" size="large" color="primary" className="button_in_parallax" >
-                Sign Up
-            </Button></div></div>
+              <div className="button-container">
+                <Button variant="outlined" size="large" color="primary" className="button_in_parallax" href="/sign_in">
+                  Login
+                </Button>
+              </div>
+            </div>
           </section>
           <section className="section_home_img parallax bg2" />
           <section className="section static">
