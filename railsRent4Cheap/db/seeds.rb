@@ -234,6 +234,5 @@ for i in 0...address.length do
     parking: (rand(0..1)==0 ? true : false),
     user: users.sample,
   )
-  l
 end
 puts Listing.count
