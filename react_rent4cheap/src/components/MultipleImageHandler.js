@@ -74,7 +74,7 @@ function MultipleImageHandler(props) {
 
           <div key={index} className={classes.img}>
             {loaded ? null : (
-              <Skeleton variant="rect" className={classes.img} />
+              <Skeleton variant="rect" className={classes.img} height='300px' />
             )}
             <img
               className={classes.img}
@@ -82,6 +82,7 @@ function MultipleImageHandler(props) {
               alt={step.label}
               style={loaded ? {} : { display: 'none' }}
               onLoad={() => setLoaded(true)}
+              height='300px'
             />
           </div>
         ))}

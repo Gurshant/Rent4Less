@@ -3,6 +3,7 @@ import { Route, Switch } from "react-router-dom";
 
 import NavBar from "./NavBar";
 import SignPage from "./SignPage";
+import ContactUsPage from "./ContactUsPage";
 
 import ListingShowPage from "./ListingShowPage";
 import ListingNewPage from "./ListingNewPage";
@@ -104,6 +105,12 @@ class Router extends React.Component {
             <>
               <NavBar currentUser={currentUser} onSignOut={this.signOut} />
               <SignPage {...routeProps} onSignIn={this.getUser} />
+            </>)}
+          />
+          <Route exact path="/contact_us" render={routeProps => (
+            <>
+              <NavBar currentUser={currentUser} onSignOut={this.signOut} />
+              <ContactUsPage {...routeProps} />
             </>)}
           />
           <Route exact path="/sign_up" render={routeProps => (
