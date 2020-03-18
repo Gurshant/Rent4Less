@@ -55,9 +55,7 @@ export default function NavBar(props) {
 
             <Button edge="end" variant="outlined" size="large" color="primary" className="button navbar_buttons" href="/contact_us">Contact Us</Button>
 
-            <Button edge="end" variant="outlined" size="large" color="primary" className="button navbar_buttons" href="/#">My Rentals</Button>
-
-            <Button edge="end" variant="outlined" size="large" color="primary" className="button navbar_buttons" href="/listings/new">New Rental</Button>
+            <Button edge="end" variant="outlined" size="large" color="primary" className="button navbar_buttons" href="/listings/new">Upload Listing</Button>
             <IconButton
               aria-label="account of current user"
               aria-controls="menu-appbar"
@@ -99,5 +97,6 @@ export default function NavBar(props) {
 
       </Toolbar>
     </AppBar >
+
   );
 }
