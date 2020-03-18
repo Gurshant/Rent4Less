@@ -10,8 +10,7 @@ import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
-
+import EmailIcon from '@material-ui/icons/Email';
 
 const useStyles = makeStyles(theme => ({
   // root: {
@@ -54,7 +53,7 @@ function ContactUsPage(props) {
       <Grid item xs={12} sm={8} md={6} justify="center" component={Paper} elevation={10} className={classes.paper}>
         <div className={classes.paper}>
           <Avatar className={classes.avatar}>
-            <LockOutlinedIcon />
+            <EmailIcon />
           </Avatar>
           <Typography component="h1" variant="h4">
             Contact Us

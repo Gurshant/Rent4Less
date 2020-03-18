@@ -53,6 +53,8 @@ export default function NavBar(props) {
           <span >
             <Button edge="end" variant="outlined" size="large" color="primary" className="button navbar_buttons" href="/listings">Find a Home</Button>
 
+            <Button edge="end" variant="outlined" size="large" color="primary" className="button navbar_buttons" href="/contact_us">Contact Us</Button>
+
             <Button edge="end" variant="outlined" size="large" color="primary" className="button navbar_buttons" href="/#">My Rentals</Button>
 
             <Button edge="end" variant="outlined" size="large" color="primary" className="button navbar_buttons" href="/listings/new">New Rental</Button>
@@ -88,6 +90,7 @@ export default function NavBar(props) {
         ) : (
             <span >
               <Button edge="end" variant="outlined" size="large" color="primary" className="button navbar_buttons" href="/listings">Find a Home</Button>
+              <Button edge="end" variant="outlined" size="large" color="primary" className="button navbar_buttons" href="/contact_us">Contact Us</Button>
               <Button edge="end" variant="outlined" size="large" color="primary" className="button navbar_buttons" href="/sign_up">Sign Up</Button>
               <Button edge="end" variant="outlined" size="large" color="primary" className="button navbar_buttons" href="/sign_in">Login</Button>
             </span>
