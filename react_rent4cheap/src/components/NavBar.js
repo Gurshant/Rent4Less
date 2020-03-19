@@ -6,33 +6,29 @@ import Toolbar from '@material-ui/core/Toolbar';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
-
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import logo from './images/logo.png'
 import HomeIcon from '@material-ui/icons/Home';
 import PhoneIcon from '@material-ui/icons/Phone';
-
-
-
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import AddIcon from '@material-ui/icons/Add';
+import CreateIcon from '@material-ui/icons/Create';
+import VpnKeyIcon from '@material-ui/icons/VpnKey';
+import MenuIcon from '@material-ui/icons/Menu';
+import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
+import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import clsx from 'clsx';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import List from '@material-ui/core/List';
 import Link from '@material-ui/core/Link';
-// import NavLink from '@material-ui/core/NavLink';
-
-
+import Fade from '@material-ui/core/Fade';
 import Divider from '@material-ui/core/Divider';
-import MenuIcon from '@material-ui/icons/Menu';
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
 
 const drawerWidth = 200;
 
@@ -112,11 +108,12 @@ export default function NavBar(props) {
   const isMobile = useMediaQuery({ query: '(max-width: 830px)' })
   const isDesktop = useMediaQuery({ query: '(min-width: 831px)' })
 
-
   const classes = useStyles();
   const theme = useTheme();
 
   const [anchorEl, setAnchorEl] = React.useState(null);
+  const openDesktopMenu = Boolean(anchorEl);
+
   const handleMenu = event => {
     setAnchorEl(event.currentTarget);
   };
@@ -171,44 +168,45 @@ export default function NavBar(props) {
             </div>
             <Divider />
             <List>
-              <ListItem button component={Link} to="/listings">
+              <ListItem button component={Link} href="/listings">
                 <ListItemIcon><HomeIcon /></ListItemIcon>
                 <ListItemText primary={"Find a Home"} />
               </ListItem>
-              <ListItem button component={Link} to="/listings">
+              <ListItem button component={Link} href="/contact_us">
                 <ListItemIcon><PhoneIcon /></ListItemIcon>
                 <ListItemText primary={"Contact Us"} />
-              </ListItem>
-              <ListItem button component={Link} to="/listings">
-                <ListItemIcon><HomeIcon /></ListItemIcon>
-                <ListItemText primary={"Sign Out"} />
-              </ListItem>
-              <ListItem button component={Link} to="/listings">
-                <ListItemIcon><HomeIcon /></ListItemIcon>
-                <ListItemText primary={"Upload Listing"} />
-              </ListItem>
-              <ListItem button component={Link} to="/listings">
-                <ListItemIcon><HomeIcon /></ListItemIcon>
-                <ListItemText primary={"My Listings"} />
-              </ListItem>
-              <ListItem button component={Link} to="/listings">
-                <ListItemIcon><HomeIcon /></ListItemIcon>
-                <ListItemText primary={"Sign In"} />
-              </ListItem>
-              <ListItem button component={Link} to="/listings">
-                <ListItemIcon><HomeIcon /></ListItemIcon>
-                <ListItemText primary={"Sign Up"} />
               </ListItem>
 
             </List>
             <Divider />
             <List>
-              {['All mail', 'Trash', 'Spam'].map((text, index) => (
-                <ListItem button key={text}>
-                  <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-                  <ListItemText primary={text} />
-                </ListItem>
-              ))}
+              {currentUser ? (
+                <>
+                  <ListItem button >
+                    <ListItemIcon>< HomeIcon /></ListItemIcon>
+                    <ListItemText primary={"My Listings"} />
+                  </ListItem>
+                  <ListItem button component={Link} href="/listings/new">
+                    <ListItemIcon><AddIcon /></ListItemIcon>
+                    <ListItemText primary={"Upload Listing"} />
+                  </ListItem>
+                  <ListItem button onClick={onSignOut}>
+                    <ListItemIcon><ExitToAppIcon /></ListItemIcon>
+                    <ListItemText primary={"Logout"} />
+                  </ListItem>
+                </>
+              ) : (
+                  <>
+                    <ListItem button component={Link} href="/sign_in">
+                      <ListItemIcon><VpnKeyIcon /></ListItemIcon>
+                      <ListItemText primary={"Sign In"} />
+                    </ListItem>
+                    <ListItem button component={Link} href="/sign_up">
+                      <ListItemIcon><CreateIcon /></ListItemIcon>
+                      <ListItemText primary={"Sign Up"} />
+                    </ListItem>
+                  </>
+                )}
             </List>
           </Drawer>
         </div>
@@ -220,9 +218,6 @@ export default function NavBar(props) {
             <div>
               <a className='logo_text' href="/" > Rent <img src={logo} className="logo" />  Less</a>
             </div>
-            {/* <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
-            <MenuIcon />
-          </IconButton> */}
             {currentUser ? (
               <span >
                 <Button edge="end" variant="outlined" size="large" color="primary" className="button navbar_buttons" href="/listings">Find a Home</Button>
@@ -251,7 +246,8 @@ export default function NavBar(props) {
                     vertical: 'top',
                     horizontal: 'right',
                   }}
-                  open={anchorEl}
+                  open={openDesktopMenu}
+                  TransitionComponent={Fade}
                   onClose={handleClose}
                 >
                   <MenuItem onClick={handleClose}>Profile</MenuItem>

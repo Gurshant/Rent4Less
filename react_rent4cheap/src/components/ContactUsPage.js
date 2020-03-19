@@ -49,8 +49,8 @@ function ContactUsPage(props) {
   return (
     <Grid container component="main" className={classes.image} >
       <CssBaseline />
-      <Grid item xs={0} sm={2} md={3} />
-      <Grid item xs={12} sm={8} md={6} justify="center" component={Paper} elevation={10} className={classes.paper}>
+      <Grid item xs={null} sm={2} md={3} />
+      <Grid item xs={12} sm={8} md={6} component={Paper} elevation={10} className={classes.paper}>
         <div className={classes.paper}>
           <Avatar className={classes.avatar}>
             <EmailIcon />
@@ -124,7 +124,7 @@ function ContactUsPage(props) {
         </div>
 
       </Grid>
-      <Grid item xs={0} sm={2} md={3} />
+      <Grid item xs={null} sm={2} md={3} />
     </Grid>
   )
 }
