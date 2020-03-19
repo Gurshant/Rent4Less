@@ -34,9 +34,6 @@ const useStyles = makeStyles(theme => ({
   submit: {
     margin: theme.spacing(3, 0, 2),
   },
-  input: {
-    display: 'none',
-  },
 }));
 
 // const getBase64 = (file, cb) => {
@@ -304,22 +301,35 @@ export default function ListingNewForm(props) {
             onChange={handleFile}
             name='images'
             accept="image/*"
-            // className={classes.input}
+            style={{ display: 'none' }}
             id="contained-button-file"
             multiple
             type="file"
           />
-          {/* <label htmlFor="contained-button-file">
+          <label htmlFor="contained-button-file">
             <Button
               variant="outlined"
               size="large"
               color="primary"
               component='span'
               className="button_in_parallax "
-            >Upload Images
+            >Upload Image
           </Button>
-          </label> */}
+          </label>
         </div>
+        {/* <input
+          onChange={handleFile}
+          name='images'
+          accept="image/*"
+          // className={classes.input}
+          id="contained-button-file"
+          type="file"
+        />
+        <label htmlFor="contained-button-file">
+          <Button variant="outlined" color="primary" size="large" component=" span" className="button_in_parallax ">
+            Upload Images
+          </Button>
+        </label> */}
 
         <Typography component="h1" variant="h5" align="left">
           Amenities
