@@ -34,9 +34,9 @@ export default function SignPage(props) {
       <Grid item xs={false} sm={5} md={7} className={classes.image} />
       <Grid item xs={12} sm={7} md={5} component={Paper} elevation={6} square>
         {props.history.location.pathname === "/sign_in" ? (
-          <SignInForm props={props} />
+          <SignInForm {...props} />
         ) :
-          <SignUpForm props={props} />
+          <SignUpForm {...props} />
         }
       </Grid>
     </Grid>

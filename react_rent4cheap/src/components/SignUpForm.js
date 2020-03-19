@@ -80,8 +80,8 @@ export default function SignUpForm(props) {
           password: signUpParams.password
         }).then(data => {
           setErrors([])
-          props.props.onSignIn();
-          props.props.history.push("/");
+          props.onSignIn();
+          props.history.push("/");
         })
       }
     })

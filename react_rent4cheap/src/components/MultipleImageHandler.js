@@ -38,7 +38,6 @@ const useStyles = makeStyles(theme => ({
 }));
 
 function MultipleImageHandler(props) {
-  console.log(props.photo)
   const images = [
     { imgPath: props.photo }
   ]
