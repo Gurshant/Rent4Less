@@ -372,3 +372,7 @@ input:-internal-autofill-selected {
   .linkToExternal:hover{
     text-decoration: underline;
   }
+
+  .MuiLink-underlineHover:hover{
+    text-decoration: none !important;
+  }
