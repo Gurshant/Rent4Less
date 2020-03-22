@@ -58,7 +58,6 @@ function MapShowPage(props) {
 
 
   const filterMarker = (params) => {
-    console.log(params);
     Listing.all().then(listings => {
       let valid = listings.filter(list => (list.latitude && list.sqft >= params.sqft && list.bedroom >= params.bedroom && list.bathroom >= params.bathroom && (params.price ? list.price <= params.price : true) && (params.ac ? list.ac : true) && (params.deck ? list.deck : true) && (params.fireplace ? list.fireplace : true) && (params.pet_friendly ? list.pet_friendly : true) && (params.smoking ? list.smoking : true) && (params.parking ? list.parking : true) && (params.gym ? list.gym : true) && (params.laundromat ? list.laundromat : true)));
       setListings(valid)
@@ -100,7 +99,6 @@ function MapShowPage(props) {
                 <Popup>
                   <Grid container component="main" className={classes.card}>
                     <Grid item sm={5} className={classes.popup} >
-                      {console.log(listing)}
                       <div className={classes.image}>
                         {listing.photo ? (
                           <Image

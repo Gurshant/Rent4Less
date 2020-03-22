@@ -211,8 +211,12 @@ for i in 0...address.length do
   puts i
   puts address[i]
 # byebug
+  # img_num=rand(1...6)
+  # byebug
+  # image_data = File.open("#{Rails.root}/public/images/home1.jpg")
 
-  l=Listing.create(
+  l=Listing.new(
+    # images: image_data,
     street_number: address[i][:street_number],
     route: address[i][:route],
     locality: address[i][:locality],
@@ -234,5 +238,7 @@ for i in 0...address.length do
     parking: (rand(0..1)==0 ? true : false),
     user: users.sample,
   )
+  # l.images=image_data;
+  l.save
 end
 puts Listing.count

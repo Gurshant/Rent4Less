@@ -28,7 +28,7 @@ export default function ListingNewPage(props) {
       <Grid item xs={false} sm={5} md={7} className={classes.image} />
       <Grid item xs={12} sm={7} md={5} component={Paper} elevation={6} square className='scrollable'>
         <div className='scrollable_child'>
-          <ListingNewForm props={props} />
+          <ListingNewForm {...props} />
         </div>
       </Grid>
     </Grid>

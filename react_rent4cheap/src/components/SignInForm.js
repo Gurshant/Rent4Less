@@ -66,9 +66,9 @@ export default function SignInForm(props) {
         setErrors([{ message: "Wrong email or password" }])
       } else {
         setErrors([])
-        props.props.history.push('/');
-        if (typeof props.props.onSignIn === "function") {
-          props.props.onSignIn();
+        props.history.push('/');
+        if (typeof props.onSignIn === "function") {
+          props.onSignIn();
         }
       }
     })

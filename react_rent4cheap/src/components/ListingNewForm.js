@@ -36,18 +36,6 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-// const getBase64 = (file, cb) => {
-//   let reader = new FileReader();
-// reader.readAsDataURL(file);A
-
-//   reader.onload = function () {
-//     cb(reader.result)
-//   };
-//   reader.onerror = function (error) {
-//     console.log('Error: ', error);
-//   };
-// }
-
 export default function ListingNewForm(props) {
   const classes = useStyles();
 
@@ -66,35 +54,15 @@ export default function ListingNewForm(props) {
   });
   // Component did mount
   useEffect(() => {
-    props.props.handlePlaceholder('Enter Rental Address Here***')
+    props.handlePlaceholder('Enter Rental Address Here***')
   }, [])
 
   const createListing = params => {
-    // debugger;
-    // Array.prototype.forEach.call(file, function (img) {
-    //   console.log(img)
-    //   let reader = new FileReader();
-    //   reader.readAsDataURL(img)
-    //   reader.onload = function () {
-    //     // reader.result.push(reader.readAsDataURL(file[i]))
-    //     console.log(reader.result)
-    //     // result.push(reader.result)
-    //     if (params.image.length != file.length) {
-    //       params.image.push(reader.result)
-    //       params.image = [];
-    //       debugger;
-    //     }
-    //   }
-    // });
-
-    // debugger;
-    console.log(params)
     Listing.create(params).then(listing => {
-      // debugger;
       if (listing.errors) {
         setErrors([listing.errors])
       } else {
-        props.props.history.push(`/listings/${listing.id}`);
+        props.history.push(`/listings/${listing.id}`);
       }
     });
   };
@@ -147,7 +115,7 @@ export default function ListingNewForm(props) {
         Address
       </Typography>
       <GoogleAutocomplete
-        placeholder={props.props.placeholder}
+        placeholder={props.placeholder}
         handleSelect={address => handleSearchSelect(address)}
         handleChange={address => handleSearchChange(address)}
         address={address}

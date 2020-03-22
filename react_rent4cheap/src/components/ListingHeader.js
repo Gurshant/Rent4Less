@@ -22,7 +22,6 @@ const useStyles = makeStyles(theme => ({
 
 function ListingHeader(props) {
   const classes = useStyles();
-  console.log(props)
   return (
     <Grid container component={Paper} elevation={6} className={classes.paper}>
       <CssBaseline />
