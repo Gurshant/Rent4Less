@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Img from 'react-image'
+// import Img from 'react-image'
 
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import MobileStepper from '@material-ui/core/MobileStepper';

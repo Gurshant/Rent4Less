@@ -11,7 +11,6 @@ import Grid from '@material-ui/core/Grid';
 import icon from '../marker.svg';
 
 import StarIcon from '@material-ui/icons/Star';
-import HomeIcon from '@material-ui/icons/Home';
 import HotelIcon from '@material-ui/icons/Hotel';
 import BathtubIcon from '@material-ui/icons/Bathtub';
 import SquareFootIcon from '@material-ui/icons/SquareFoot';
@@ -27,7 +26,7 @@ import DeckIcon from '@material-ui/icons/Deck';
 import ExploreIcon from '@material-ui/icons/Explore';
 
 
-import { Map, TileLayer, Marker, Popup, Leaflet } from "react-leaflet";
+import { Map, TileLayer, Marker } from "react-leaflet";
 import L from 'leaflet'
 
 
@@ -55,25 +54,6 @@ TabPanel.propTypes = {
   index: PropTypes.any.isRequired,
   value: PropTypes.any.isRequired,
 };
-
-function a11yProps(index) {
-  return {
-    id: `nav-tab-${index}`,
-    'aria-controls': `nav-tabpanel-${index}`,
-  };
-}
-
-function LinkTab(props) {
-  return (
-    <Tab
-      component="a"
-      onClick={event => {
-        event.preventDefault();
-      }}
-      {...props}
-    />
-  );
-}
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -115,7 +95,7 @@ export default function ListingDetailNav(props) {
         <Typography component="h1" variant='h4' align='left'>
           Description
         </Typography>
-        <Typography component="h1" variant='h6' align="left" align='left' className='grey_text'>
+        <Typography component="h1" variant='h6' align='left' className='grey_text'>
           {props.description}
           <br />
           <br />

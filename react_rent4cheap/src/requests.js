@@ -21,13 +21,7 @@ const Listing = {
     return fetch(`${BASE_URL}/listings`, {
       method: "POST",
       credentials: "include",
-      // headers: {
-      //   "Content-Type": "multipart/form-data"
-      //   // "Content-Type": "application/json"
-
-      // },
       body: params
-      // body: JSON.stringify(params)
     }).then(res => res.json());
   },
   // updating a listing

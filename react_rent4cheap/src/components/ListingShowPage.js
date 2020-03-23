@@ -15,7 +15,7 @@ function ListingShowPage(props) {
       setListing(listing)
       setLoading(false)
     })
-  }, [])
+  }, [props.match.params.id])
 
   if (loading) {
     return (<ProgressSpinner />)

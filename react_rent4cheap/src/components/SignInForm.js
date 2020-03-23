@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import GoogleLogin from 'react-google-login';
+// import GoogleLogin from 'react-google-login';
 
 import Grid from '@material-ui/core/Grid';
 import Avatar from '@material-ui/core/Avatar';
@@ -73,9 +73,11 @@ export default function SignInForm(props) {
       }
     })
   }
-  const responseGoogle = (response) => {
-    console.log(response);
-  }
+  // const responseGoogle = (response) => {
+  //   debugger
+  //   console.log("hello")
+  //   // console.log(response);
+  // }
   return (
     <div className={classes.paper}>
       <Avatar className={classes.avatar}>
@@ -85,7 +87,8 @@ export default function SignInForm(props) {
         Sign in
       </Typography>
       {/* <GoogleLogin
-        clientId="658977310896-knrl3gka66fldh83dao2rhgbblmd4un9.apps.googleusercontent.com"
+        // redirectUri="http://localhost:3001/sign_in"
+        clientId="455406757158-l0strudv070mulnr68eheoqk1o3ejb6o.apps.googleusercontent.com"
         buttonText="Login"
         onSuccess={responseGoogle}
         onFailure={responseGoogle}
