@@ -10,7 +10,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 
-import ReactTimeAgo from 'react-time-ago'
+import TimeAgo from 'react-time-ago'
 
 
 const useStyles = makeStyles(theme => ({
@@ -28,7 +28,7 @@ function ListingHeader(props) {
       <Grid item component="section" xs={12} sm={12} md={8}  >
         <Typography component="h1" variant='h4' align="left"  >
           ${props.price}
-          <span className='time grey_text'> - <ReactTimeAgo date={props.created_at} /> </span>
+          <span className='time grey_text'> - <TimeAgo date={props.created_at} /> </span>
         </Typography>
         <Typography component="h3" variant='h6' align="left" className='grey_text'>
           {props.street_number} {props.route}, {props.locality} {props.administrative_area_level_1}

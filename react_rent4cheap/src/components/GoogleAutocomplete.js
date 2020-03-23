@@ -1,6 +1,5 @@
 import React from 'react';
 import PlacesAutocomplete from 'react-places-autocomplete';
-import ProgressSpinner from './ProgressSpinner';
 
 function GoogleAutocomplete(props) {
   const searchOptions = {

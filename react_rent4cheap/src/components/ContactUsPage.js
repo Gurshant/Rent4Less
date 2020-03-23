@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 
 import Paper from '@material-ui/core/Paper';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -30,14 +30,12 @@ const useStyles = makeStyles(theme => ({
     marginBottom: '0 auto',
   },
   avatar: {
-    margin: theme.spacing(1),
     backgroundColor: '#0D3606',
     margin: '0 auto',
   },
   form: {
     margin: '0 auto',
-    width: '90%', // Fix IE 11 issue.
-    marginTop: theme.spacing(1),
+    width: '90%',
     justifyContent: 'center',
     alignItems: 'center'
   },
@@ -45,7 +43,6 @@ const useStyles = makeStyles(theme => ({
 
 function ContactUsPage(props) {
   const classes = useStyles();
-
   return (
     <Grid container component="main" className={classes.image} >
       <CssBaseline />
@@ -122,7 +119,6 @@ function ContactUsPage(props) {
             >Submit</Button>
           </form>
         </div>
-
       </Grid>
       <Grid item xs={null} sm={2} md={3} />
     </Grid>

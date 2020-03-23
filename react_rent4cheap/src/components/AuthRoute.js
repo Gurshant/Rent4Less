@@ -14,12 +14,10 @@ const AuthRoute = props => {
       {...restProps}
       render={routeProps => {
         if (isAuthenticated) {
-          {
-            if (typeof render === "function") {
-              return render(routeProps);
-            } else {
-              return <Component {...routeProps} />;
-            }
+          if (typeof render === "function") {
+            return render(routeProps);
+          } else {
+            return <Component {...routeProps} />;
           }
         } else {
           return <Redirect to="/sign_in" />;

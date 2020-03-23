@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { Map, TileLayer, Marker, Popup, Leaflet } from "react-leaflet";
+import { Map, TileLayer, Marker, Popup } from "react-leaflet";
 import L from 'leaflet'
 import { Listing } from '../requests'
 import marker from '../marker.svg'
 import FilterForm from './FilterForm'
 import GoogleAutocomplete from './GoogleAutocomplete'
 import NoImage from './images/no_image_placeholder.png'
-
-
 import Grid from '@material-ui/core/Grid';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { makeStyles } from '@material-ui/core/styles';
@@ -17,11 +15,7 @@ import Link from '@material-ui/core/Link';
 import HotelIcon from '@material-ui/icons/Hotel';
 import BathtubIcon from '@material-ui/icons/Bathtub';
 import ProgressSpinner from "./ProgressSpinner";
-
 import Image from "react-graceful-image";
-
-
-
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -56,7 +50,6 @@ function MapShowPage(props) {
   const [listings, setListings] = useState([]);
   const [loading, setLoading] = useState(true);
 
-
   const filterMarker = (params) => {
     Listing.all().then(listings => {
       let valid = listings.filter(list => (list.latitude && list.sqft >= params.sqft && list.bedroom >= params.bedroom && list.bathroom >= params.bathroom && (params.price ? list.price <= params.price : true) && (params.ac ? list.ac : true) && (params.deck ? list.deck : true) && (params.fireplace ? list.fireplace : true) && (params.pet_friendly ? list.pet_friendly : true) && (params.smoking ? list.smoking : true) && (params.parking ? list.parking : true) && (params.gym ? list.gym : true) && (params.laundromat ? list.laundromat : true)));
@@ -64,11 +57,8 @@ function MapShowPage(props) {
       setLoading(false)
     });
   }
-  // const componentDidMount = () => {
-  //   let params = { sqft: 0, bedroom: 0, bathroom: 0 }
-  //   filterMarker(params);
-  //   props.handlePlaceholder('Search a location or neighborhood')
-  // }
+
+
   useEffect(() => {
     let params = { sqft: 0, bedroom: 0, bathroom: 0 }
     filterMarker(params);
@@ -80,7 +70,6 @@ function MapShowPage(props) {
     iconAnchor: [12, 41],
     popupAnchor: [1, -34],
   })
-
 
   if (loading) {
     return (<ProgressSpinner />)
@@ -98,7 +87,7 @@ function MapShowPage(props) {
               <Marker position={[listing.latitude, listing.longitude]} key={listing.id} icon={icon} >
                 <Popup>
                   <Grid container component="main" className={classes.card}>
-                    <Grid item sm={5} className={classes.popup} >
+                    <Grid item xs={5} sm={5} className={classes.popup} >
                       <div className={classes.image}>
                         {listing.photo ? (
                           <Image
@@ -108,18 +97,15 @@ function MapShowPage(props) {
                           />
                         ) : (
                             <img
+                              alt='not loaded'
                               className={classes.image}
                               src={NoImage}
-                            // style={loaded ? {} : { display: 'none' }}
-                            // onLoad={() => setLoaded(true)}
                             />
                           )
                         }
-
                       </div>
-                      {/* <img src={HomeImage} className={classes.image}></img> */}
                     </Grid>
-                    <Grid item sm={7} component={Paper} elevation={0} >
+                    <Grid item xs={7} sm={7} component={Paper} elevation={0} >
                       <Typography component="h1" variant='body1' align="left" >
                         ${listing.price}
                       </Typography>
@@ -134,11 +120,10 @@ function MapShowPage(props) {
             ))}
           </Map>
         </Grid>
-        <Grid item xs={false} sm={4} md={5} className='scrollable'>
+        <Grid item xs={null} sm={4} md={5} className='scrollable'>
           <div className='scrollable_child'>
             <div className={classes.paper}>
               <GoogleAutocomplete
-
                 id='hello'
                 placeholder={props.placeholder}
                 handleSelect={props.handleSelect}
@@ -146,15 +131,14 @@ function MapShowPage(props) {
                 address={props.address}
               /><br />
               <FilterForm
-
                 filterMarker={params => filterMarker(params)}
               />
             </div>
           </div>
         </Grid>
+
       </Grid >
     );
   }
 };
-
 export default MapShowPage;

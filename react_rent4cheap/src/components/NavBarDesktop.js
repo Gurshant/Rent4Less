@@ -39,7 +39,7 @@ export default function NavBar(props) {
     < AppBar position="static" className={classes.rootDesktop} >
       <Toolbar className={classes.toolbar}>
         <div>
-          <a className='logo_text' href="/" > Rent <img src={logo} className="logo" />  Less</a>
+          <a className='logo_text' href="/" > Rent <img alt='logo' src={logo} className="logo" />  Less</a>
         </div>
         {currentUser ? (
           <span >

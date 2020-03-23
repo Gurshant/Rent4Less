@@ -117,7 +117,7 @@ export default function NavBarMobile(props) {
           >
             <MenuIcon />
           </IconButton>
-          <a className='logo_text' href="/" > Rent <img src={logo} className="logo" />  Less</a>
+          <a className='logo_text' href="/" > Rent <img alt='' src={logo} className="logo" />  Less</a>
         </Toolbar>
       </AppBar>
       <Drawer
