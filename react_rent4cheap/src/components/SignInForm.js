@@ -88,7 +88,6 @@ export default function SignInForm(props) {
       </Typography>
       {/* <GoogleLogin
         // redirectUri="http://localhost:3001/sign_in"
-        clientId="455406757158-l0strudv070mulnr68eheoqk1o3ejb6o.apps.googleusercontent.com"
         buttonText="Login"
         onSuccess={responseGoogle}
         onFailure={responseGoogle}

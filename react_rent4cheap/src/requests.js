@@ -1,6 +1,7 @@
 // Requests
 
-const BASE_URL = `http://localhost:3000/api/v1`;
+// const BASE_URL = `http://localhost:3000/api/v1`;
+const BASE_URL = `http://rent4less-rails-api.herokuapp.com/api/v1`;
 
 // Create a module of listing related fetch request methods
 const Listing = {
