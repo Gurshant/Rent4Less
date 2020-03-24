@@ -1,10 +1,10 @@
 class Api::V1::SessionsController < Api::ApplicationController
   def create
     user = User.find_by(email: params[:email])
+    p 'hello'
     p user
     if user&.authenticate params[:password]
-      p user
-      p authenticate
+      p user 
       session[:user_id] = user.id 
       render json: {id: user.id}
     else
