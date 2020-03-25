@@ -3,7 +3,7 @@ class Api::V1::UsersController < Api::ApplicationController
 
   rescue_from(ActiveRecord:: RecordNotFound, with: :record_not_found)
   rescue_from(ActiveRecord:: RecordInvalid, with: :record_invalid)
- 
+
   def current
     # render json: current_user
     render json: { id: current_user.id, first_name: current_user.first_name }
