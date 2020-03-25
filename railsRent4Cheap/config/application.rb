@@ -38,8 +38,6 @@ module RentForCheap
       g.helper = false
       g.assets = false
     end
-    # secure cookie
-    # config.force_ssl = true
     
     # configure CORS
     config.middleware.insert_before(0, Rack::Cors) do
