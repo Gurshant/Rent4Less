@@ -51,7 +51,7 @@ Note: The front-end server is running on http://localhost:3001 and the API serve
 3. Create a file under ```/react_rent4less``` called .env
     * Paste your key in the file using the format:
     ```
-    REACT_APP_MAPS_API_KEY=AIzaSyAqXv4Zd1Lw-Us_q09tW_ItO708qFsj1w0
+    REACT_APP_MAPS_API_KEY=MY_API_KEY
     ```
 ## Technologies Used
 
