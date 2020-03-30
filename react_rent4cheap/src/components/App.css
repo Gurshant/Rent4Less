@@ -145,7 +145,7 @@ p {
 
 .static {
   width: 100%;
-  height: 80vh;
+  height: 85vh;
   background: rgba(255, 255, 255, 1);
   display: flex;
   flex-direction: column;
@@ -392,6 +392,9 @@ select:-webkit-autofill:focus {
   }
   .search_bar{
     margin-top: 4em;
+  }
+  .grey_text{
+    font-size: 1rem !important;
   }
 }
 @media(max-width: 1000px) {

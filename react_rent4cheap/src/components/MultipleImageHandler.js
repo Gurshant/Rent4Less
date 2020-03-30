@@ -18,9 +18,8 @@ const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 
 const useStyles = makeStyles(theme => ({
   root: {
-    maxWidth: '100%',
-    minWidth: '100%',
-    minHeight: '100%',
+    maxWidth: '60em',
+    maxHeight: '100%',
     flexGrow: 1,
     backgroundColor: 'lightgrey',
   },
