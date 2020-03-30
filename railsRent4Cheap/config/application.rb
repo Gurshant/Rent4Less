@@ -44,8 +44,14 @@ module RentForCheap
       allow do
         # origins specifies which domains are allowed to make AJAX requests
         # to this server
+        # origins '*'
+        # resource(
+        #   '*', 
+        #   :headers => :any, 
+        #   :methods => [:get, :post, :options]),
+        #   credentials: true
         origins("localhost:3001")
-        
+        # origins("rentforless.netlify.com")
         resource(
           # allow access to only paths that begin with /api/
           "/api/*",

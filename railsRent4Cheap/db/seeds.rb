@@ -191,6 +191,7 @@ address=[
     country: 'Canada'
   },
 ]
+
 Listing.delete_all
 User.delete_all
 
@@ -210,13 +211,18 @@ users=User.all
 for i in 0...address.length do
   puts i
   puts address[i]
-# byebug
-  # img_num=rand(1...6)
-  # byebug
-  # image_data = File.open("#{Rails.root}/public/images/home1.jpg")
-
+  def image_fetcher
+    tmp=rand(1..5)
+    image_files = {
+      1  => File.open(Rails.root.join 'public', 'images', 'home1.jpg'),
+      2 => File.open(Rails.root.join 'public', 'images', 'home2.jpeg'),
+      3 => File.open(Rails.root.join 'public', 'images', 'home3.jpg'),
+      4 => File.open(Rails.root.join 'public', 'images', 'home4.jpg'),
+      5 => File.open(Rails.root.join 'public', 'images', 'home6.jpeg'),
+    }
+    image_files[tmp]
+  end
   l=Listing.new(
-    # images: image_data,
     street_number: address[i][:street_number],
     route: address[i][:route],
     locality: address[i][:locality],
@@ -238,6 +244,10 @@ for i in 0...address.length do
     parking: (rand(0..1)==0 ? true : false),
     user: users.sample,
   )
+  l.images.attach({
+     io: image_fetcher,
+     filename: "faker_home.jpg"
+  })
   # l.images=image_data;
   l.save
 end
