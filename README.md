@@ -53,6 +53,8 @@ Note: The front-end server is running on http://localhost:3001 and the API serve
     ```
     REACT_APP_MAPS_API_KEY=AIzaSyAqXv4Zd1Lw-Us_q09tW_ItO708qFsj1w0
     ```
+## Screenshots off app
+![image info](./pictures/homeImage.png)
 ## Technologies Used
 
 * [React.js](https://reactjs.org) - Frontend Framework
