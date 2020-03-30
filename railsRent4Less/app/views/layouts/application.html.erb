@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>RentForCheap</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all' %>
+    <%= javascript_pack_tag 'application' %>
+
+
+    <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 100%;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+  </head>
+
+  <body>
+    
+    <% if user_signed_in? %>
+      Hello <%= current_user.full_name %>,
+      <%= link_to "Logout", session_path, method: :delete, data: {confirm: "are you sure you want to log out?"}%>
+    <% else %>
+      <%= link_to "Login", new_session_path %> |
+      <%= link_to "Sign Up", new_user_path %>
+    <% end %>
+    <hr>
+    <%= flash.discard[:notice] || flash.discard[:alert] %>
+
+
+    <%= yield %>
+  </body>
+</html>
