@@ -1,6 +1,6 @@
 # Rent4Less
 
-Rent4Less is a rental management and advertising system. This project's main purpose is to help users find rental properties very easily and efficiently, compared to other commonly used options today. User's can search areas, filter the results, then contact owners in a matter of minutes, helping them find their dream home quickly. Rent4Less is supported by both desktops and mobile phones.
+Rent4Less is a platform that I have created for users to easily access homes available for rent and home owners to manage their property rentals . The aim of this project is to efficiently assist customers who are seeking to find rental properties in the lower mainland. I differentiated this platform from other widely used programs that are currently found in the marketplace through better user experience and efficiency in places I found that were lacking.  I anticipate that the use of this application will guide customers in the right direction to help find their dream home. Rent4Less is supported by both desktop and mobile phones.
 
 This Project includes two key components: 
 1. A backend API built using Ruby on Rails
