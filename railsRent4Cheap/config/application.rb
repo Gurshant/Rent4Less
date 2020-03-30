@@ -50,8 +50,8 @@ module RentForCheap
         #   :headers => :any, 
         #   :methods => [:get, :post, :options]),
         #   credentials: true
-        # origins("localhost:3001")
-        origins("rentforless.netlify.com")
+        origins("localhost:3001")
+        # origins("rentforless.netlify.com")
         resource(
           # allow access to only paths that begin with /api/
           "/api/*",

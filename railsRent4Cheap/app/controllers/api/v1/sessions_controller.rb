@@ -1,11 +1,8 @@
 class Api::V1::SessionsController < Api::ApplicationController
   def create
     user = User.find_by(email: params[:email])
-    p 'hello'
-    p user
     if user&.authenticate params[:password]
-      p user 
-      session[:user_id] = user.id 
+      session[:user_id] = user.id
       render json: {id: user.id}
     else
       render json:{status: 404}, status: 404 # Not found
