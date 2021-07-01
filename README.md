@@ -72,7 +72,7 @@ Note: The front-end server is running on http://localhost:3001 and the API serve
 ## Screenshots
 
 <img src="website_screenshots/homeImage.png?raw=true" align="left" height="200" width="330" >
-<img src="website_screenshots/signIn.png?raw=true" align="left" height="200" width="330" >
+<img src="website_screenshots/SignIn.png?raw=true" align="left" height="200" width="330" >
 <img src="website_screenshots/ListingIndexPopup.png?raw=true" align="left" height="200" width="330" >
 <img src="website_screenshots/ListingShow.png?raw=true" align="left" height="200" width="330" >
 <img src="website_screenshots/NewListing.png?raw=true" align="left" height="200" width="330" >
