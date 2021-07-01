@@ -68,3 +68,15 @@ Note: The front-end server is running on http://localhost:3001 and the API serve
 * [Leaflet Maps API](https://leafletjs.com) - Displaying the map, as Google Maps API had a recent price hike
 
 * [AWS S3 API](https://aws.amazon.com/s3/?sc_channel=PS&sc_campaign=acquisition_CA&sc_publisher=google&sc_medium=ACQ-P%7CPS-GO%7CBrand%7CDesktop%7CSU%7CStorage%7CS3%7CCA%7CEN%7CText&sc_content=s3_e&sc_detail=aws%20s3&sc_category=Storage&sc_segment=293634539894&sc_matchtype=e&sc_country=CA&s_kwcid=AL!4422!3!293634539894!e!!g!!aws%20s3&ef_id=EAIaIQobChMIjNnwxqXB6AIVhspkCh2v5AaUEAAYASAAEgLfcvD_BwE:G:s) - Hosting Images
+
+## Screenshots
+
+<img src="website_screenshots/homeImage.png?raw=true" align="left" height="200" width="330" >
+<img src="website_screenshots/signIn.png?raw=true" align="left" height="200" width="330" >
+<img src="website_screenshots/ListingIndexPopup.png?raw=true" align="left" height="200" width="330" >
+<img src="website_screenshots/ListingShow.png?raw=true" align="left" height="200" width="330" >
+<img src="website_screenshots/NewListing.png?raw=true" align="left" height="200" width="330" >
+<img src="website_screenshots/Mobile.png?raw=true" align="left" height="500" width="330" >
+<img src="website_screenshots/MobileNavBar.png?raw=true" align="left" height="500" width="330" >
+
+
